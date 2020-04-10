@@ -1,0 +1,15 @@
+body {
+  margin: 0;
+}
+
+html {
+  font-family: sans-serif;
+}
+
+.wrapper {
+  margin: 0 auto;
+  width: 1020px;
+  background-color: #9e9e9e;
+}
+
+/*# sourceMappingURL=style.css.map */
