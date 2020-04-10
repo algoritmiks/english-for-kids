@@ -1,6 +1,6 @@
 const cardsData = {
   cathegories: {
-    action1: ["cards", "dance", "dive", "draw", "tofish", "fly", "hug", "jump"],
+    action1: ["cry", "dance", "dive", "draw", "tofish", "fly", "hug", "jump"],
     action2: ["open", "play", "point", "ride", "run", "sing", "skip", "swim"],
     action3: ["argue", "build", "carry", "catch", "drive", "drop", "pull", "push"],
     adjective: ["big", "small", "fast", "slow", "friendly", "unfriendly", "young", "old"],
@@ -466,3 +466,5 @@ const cardsData = {
     mp3: "laugh.mp3"
   }
 };
+
+export { cardsData };
