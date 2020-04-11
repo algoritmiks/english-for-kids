@@ -59,10 +59,15 @@ const cardsDesc = new CardsDesk();
 let sound = document.querySelector(".mp3");
 
 cards.addEventListener('click', (e) => {
-  if (e.path[1].classList.contains("card")) {
-    sound.src=`./assets/mp3/${e.path[1].dataset.name}.mp3`;
+    let card = e.target.closest(".card");
+    if (card) {
+    sound.src=`./assets/mp3/${card.dataset.name}.mp3`;
     sound.play();
   }
 });
+
+document.querySelector(".hamburger").addEventListener('click', (e)=>{
+  document.querySelector(".menu-wrapper").style.left = "0";
+})
 
 setTimeout(()=> {cardsDesc.changeCathegory("clothes")}, 5000);

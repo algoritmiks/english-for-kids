@@ -1,0 +1,28 @@
+.menu-wrapper {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  width: 380px;
+  height: 100vh;
+  background-color: $color-menu;
+  left: -380px;
+  transition: all ease 1s;
+}
+
+.menu-list {
+  margin-left: 45px;
+}
+
+.menu-item {
+  color: $color-menu-item;
+  margin-left: 30px;
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 50px;
+  list-style: none;
+  cursor: pointer;
+}
+
+.menu-active {
+  color: $color-menu-active;
+}
