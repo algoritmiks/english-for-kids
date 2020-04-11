@@ -68,6 +68,7 @@ cards.addEventListener('click', (e) => {
 
 document.querySelector(".hamburger").addEventListener('click', (e)=>{
   document.querySelector(".menu-wrapper").style.left = "0";
+  document.querySelector(".hamburger").classList.add("hamburger__opened");
 })
 
 setTimeout(()=> {cardsDesc.changeCathegory("clothes")}, 5000);

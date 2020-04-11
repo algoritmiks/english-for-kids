@@ -9,17 +9,6 @@ const cardsData = {
     clothes: ["skirt", "pants", "blouse", "dress", "boot", "shirt", "coat", "shoe"],
     emotion: ["sad", "angry", "happy", "tired", "surprised", "scared", "smile", "laugh"]
   },
-
-  cathegoriaName: {
-    action1: "Action 1",
-    action2: "Action 2",
-    action3: "Action 3",
-    adjective: "Adjective",
-    animals1: "Animals 1",
-    animals2: "Animals 2",
-    clothes: "Clothes",
-    emotion: "Emotion"
-  },
   
   //action 1
   cry: {

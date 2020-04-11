@@ -5,8 +5,9 @@
   width: 380px;
   height: 100vh;
   background-color: $color-menu;
-  left: -380px;
+  left: -400px;
   transition: all ease 1s;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.4);
 }
 
 .menu-list {

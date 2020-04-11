@@ -33,8 +33,9 @@ html {
   width: 380px;
   height: 100vh;
   background-color: #5a5a5a;
-  left: -380px;
+  left: -400px;
   transition: all ease 1s;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.4);
 }
 
 .menu-list {
@@ -56,7 +57,14 @@ html {
 }
 
 .hamburger {
+  position: fixed;
+  left: 30px;
   z-index: 2;
+  transition: all ease 0.6s;
+}
+
+.hamburger__opened {
+  transform: rotate(90deg);
 }
 
 .card {
@@ -84,7 +92,8 @@ html {
   width: 100%;
   height: 35px;
   padding-top: 15px;
-  background-color: white;
+  background-color: #ececec;
+  color: #464646;
   text-align: center;
   font-weight: 600;
   user-select: none;
