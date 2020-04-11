@@ -31,7 +31,7 @@ class Card {
 
 class CardsDesk {
   constructor() {
-    this.currentCathegory = "action1";
+    this.currentCathegory = "emotion";
     this.cards = [];
     this.loadCards();
   }
@@ -41,6 +41,13 @@ class CardsDesk {
     cathegoryItems.forEach((card)=> {
       this.cards.push(new Card(cardsData[card]));
     })
+  }
+
+  changeCathegory(cathegory) {
+    this.currentCathegory = cathegory;
+    this.cards = [];
+    cards.innerHTML = "";
+    this.loadCards();
   }
 }
 
@@ -58,3 +65,4 @@ cards.addEventListener('click', (e) => {
   }
 });
 
+setTimeout(()=> {cardsDesc.changeCathegory("clothes")}, 5000);

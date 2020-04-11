@@ -187,9 +187,9 @@ const cardsData = {
 
   push: {
     ru: "толкать",
-    en: "pull",
-    img: "pull.jpg",
-    mp3: "pull.mp3"
+    en: "push",
+    img: "push.jpg",
+    mp3: "push.mp3"
   },
 
   //adjective
