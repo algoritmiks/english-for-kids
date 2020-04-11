@@ -12,6 +12,7 @@ class Card {
   addCardToDOM() {
     const card = document.createElement('div');
     card.classList = "card";
+    card.dataset.name = this.en;
     cards.appendChild(card);
 
     const img = document.createElement('div');
@@ -46,4 +47,14 @@ class CardsDesk {
 const cards = document.querySelector(".cards");
 
 const cardsDesc = new CardsDesk();
+
+
+let sound = document.querySelector(".mp3");
+
+cards.addEventListener('click', (e) => {
+  if (e.path[1].classList.contains("card")) {
+    sound.src=`./assets/mp3/${e.path[1].dataset.name}.mp3`;
+    sound.play();
+  }
+});
 
