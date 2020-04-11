@@ -1,12 +1,30 @@
 import { cardsData } from "./modules/cards.js";
 
-
 class Card {
   constructor(card) {
     this.mp3 = card.mp3;
     this.ru = card.ru;
     this.en = card.en;
-    this.img = card.img; 
+    this.img = card.img;
+    this.addCardToDOM();
+  }
+
+  addCardToDOM() {
+    const card = document.createElement('div');
+    card.classList = "card";
+    cards.appendChild(card);
+
+    const img = document.createElement('div');
+    img.classList = "card__img";
+    img.style.backgroundImage = `url('./../../assets/img/${this.img}')`;
+    card.appendChild(img);
+
+    const description = document.createElement('div');
+    description.classList = "card__description";
+    description.innerText = this.en;
+    card.appendChild(description);
+
+    this.cardDOM = card;
   }
 }
 
@@ -25,6 +43,7 @@ class CardsDesk {
   }
 }
 
+const cards = document.querySelector(".cards");
 
-let cardsDesc = new CardsDesk();
-alert(cardDesc);
+const cardsDesc = new CardsDesk();
+
