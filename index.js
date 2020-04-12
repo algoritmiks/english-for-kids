@@ -28,6 +28,10 @@ class Card {
     description.innerText = this.en;
     card.appendChild(description);
 
+    const rotate = document.createElement('div');
+    rotate.classList = "rotate";
+    description.appendChild(rotate);
+
     this.cardDOM = card;
   }
 }

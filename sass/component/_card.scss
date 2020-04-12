@@ -31,6 +31,18 @@
   user-select: none;
 }
 
+.rotate {
+  z-index: 3;
+  position: relative;
+  width: 20px;
+  height: 20px;
+  bottom: 18px;
+  left: 270px;
+  opacity: 0.5;
+  background-image: url("./../../assets/img/rotate-icon.png");
+  background-size: cover;
+}
+
 .full-image {
   height: 250px;
 }
