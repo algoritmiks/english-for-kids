@@ -1,5 +1,7 @@
 import { cardsData } from "./modules/cards.js";
 
+const $ = c => document.querySelector(c);
+
 class Card {
   constructor(card) {
     this.mp3 = card.mp3;
@@ -51,12 +53,12 @@ class CardsDesk {
   }
 }
 
-const cards = document.querySelector(".cards");
+const cards = $(".cards");
 
 const cardsDesc = new CardsDesk();
 
 
-let sound = document.querySelector(".mp3");
+let sound = $(".mp3");
 
 cards.addEventListener('click', (e) => {
     let card = e.target.closest(".card");
@@ -66,9 +68,33 @@ cards.addEventListener('click', (e) => {
   }
 });
 
-document.querySelector(".hamburger").addEventListener('click', (e)=>{
-  document.querySelector(".menu-wrapper").style.left = "0";
-  document.querySelector(".hamburger").classList.add("hamburger__opened");
-})
+const openSideMenu = () => {
+  $(".hamburger").classList.add("hamburger__opened");
+  $(".menu-wrapper").style.left = "0";
+  $(".hamburger").classList.add("hamburger__opened");
+  $(".menu-shadow").classList.add("menu-shadow__active");
+}
+
+const closeSideMenu = () => {
+  $(".hamburger").classList.remove("hamburger__opened");
+  $(".menu-wrapper").style.left = "-400px";
+  $(".menu-shadow").classList.remove("menu-shadow__active");
+}
+
+const clickHamburgerHandler = () => {
+  if ($(".menu-wrapper").style.left === "-400px" || $(".menu-wrapper").style.left === "") {
+    openSideMenu();
+  } else {
+    closeSideMenu();
+  }
+}
+
+$(".hamburger").addEventListener('click', clickHamburgerHandler);
+
+$(".menu-shadow").addEventListener('click', (e)=>{
+  if (e.target.classList.contains("menu-shadow__active")) {
+    closeSideMenu();
+  }
+});
 
 setTimeout(()=> {cardsDesc.changeCathegory("clothes")}, 5000);

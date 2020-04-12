@@ -27,3 +27,14 @@
 .menu-active {
   color: $color-menu-active;
 }
+
+.menu-shadow__active {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    z-index: 2;
+    background-color: #2d303a8f;
+    transition: all ease 1s;
+}
