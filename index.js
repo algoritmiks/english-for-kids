@@ -1,6 +1,7 @@
 import { cardsData } from "./modules/cards.js";
 
 const $ = c => document.querySelector(c);
+const $All = c => document.querySelectorAll(c);
 
 class Card {
   constructor(card) {
@@ -69,16 +70,18 @@ cards.addEventListener('click', (e) => {
 });
 
 const openSideMenu = () => {
-  $(".hamburger").classList.add("hamburger__opened");
+  $(".hamburger").classList.add("hamburger_opened");
   $(".menu-wrapper").style.left = "0";
-  $(".hamburger").classList.add("hamburger__opened");
-  $(".menu-shadow").classList.add("menu-shadow__active");
+  $(".hamburger").classList.add("hamburger_opened");
+  $(".menu-shadow").classList.add("menu-shadow_active");
+  document.body.style.overflow="hidden";
 }
 
 const closeSideMenu = () => {
-  $(".hamburger").classList.remove("hamburger__opened");
+  $(".hamburger").classList.remove("hamburger_opened");
   $(".menu-wrapper").style.left = "-400px";
-  $(".menu-shadow").classList.remove("menu-shadow__active");
+  $(".menu-shadow").classList.remove("menu-shadow_active");
+  document.body.style.overflow="visible";
 }
 
 const clickHamburgerHandler = () => {
@@ -92,9 +95,27 @@ const clickHamburgerHandler = () => {
 $(".hamburger").addEventListener('click', clickHamburgerHandler);
 
 $(".menu-shadow").addEventListener('click', (e)=>{
-  if (e.target.classList.contains("menu-shadow__active")) {
+  if (e.target.classList.contains("menu-shadow_active")) {
     closeSideMenu();
   }
 });
 
-setTimeout(()=> {cardsDesc.changeCathegory("clothes")}, 5000);
+
+const changeActiveMenu = (current) => {
+  $All(".menu-item").forEach(el => {
+    el.classList.remove("menu-item_active");
+    if (el === current) {
+      el.classList.add("menu-item_active");
+    }
+  });
+};
+
+const clickMenuHandle = (e) => {
+  if (e.target.tagName === "LI") {
+  cardsDesc.changeCathegory(e.target.dataset.name);
+  changeActiveMenu(e.target);
+  closeSideMenu();
+}
+};
+
+$(".menu-wrapper").addEventListener('click', clickMenuHandle);

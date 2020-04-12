@@ -22,13 +22,14 @@
   line-height: 50px;
   list-style: none;
   cursor: pointer;
+  user-select: none;
 }
 
-.menu-active {
+.menu-item_active {
   color: $color-menu-active;
 }
 
-.menu-shadow__active {
+.menu-shadow_active {
     position: fixed;
     width: 100vw;
     height: 100vh;
