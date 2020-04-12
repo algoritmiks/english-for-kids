@@ -36,6 +36,7 @@ class CardsDesk {
   constructor() {
     this.currentCathegory = "emotion";
     this.cards = [];
+    this.isModeGameActive = false;
     this.loadCards();
   }
 
@@ -52,6 +53,33 @@ class CardsDesk {
     cards.innerHTML = "";
     this.loadCards();
   }
+
+  changeGameModeActive() {
+    this.isModeGameActive = !this.isModeGameActive;
+    this.changeCardsMode();
+  }
+
+  setCardsGameMode() {
+    $All(".card").forEach(card => {
+      card.firstElementChild.classList.add("card__img_play");
+      card.lastElementChild.classList.add("card__description_play");
+    });
+  }
+
+  setCardsTrainingMode() {
+    $All(".card").forEach(card => {
+      card.firstElementChild.classList.remove("card__img_play");
+      card.lastElementChild.classList.remove("card__description_play");
+    });
+  }
+
+  changeCardsMode() {
+    if (this.isModeGameActive) {
+      this.setCardsGameMode();
+    } else {
+      this.setCardsTrainingMode();
+    }
+  }
 }
 
 const cards = $(".cards");
@@ -61,13 +89,19 @@ const cardsDesc = new CardsDesk();
 
 let sound = $(".mp3");
 
-cards.addEventListener('click', (e) => {
+
+const clickOnCard = (e) => {
+  if (!cardsDesc.isModeGameActive) {
     let card = e.target.closest(".card");
     if (card) {
-    sound.src=`./assets/mp3/${card.dataset.name}.mp3`;
-    sound.play();
+      sound.src = `./assets/mp3/${card.dataset.name}.mp3`;
+      sound.play();
+    }
   }
-});
+};
+
+cards.addEventListener('click', clickOnCard);
+
 
 const openSideMenu = () => {
   $(".hamburger").classList.add("hamburger_opened");
@@ -112,10 +146,14 @@ const changeActiveMenu = (current) => {
 
 const clickMenuHandle = (e) => {
   if (e.target.tagName === "LI") {
-  cardsDesc.changeCathegory(e.target.dataset.name);
-  changeActiveMenu(e.target);
-  closeSideMenu();
-}
+    cardsDesc.changeCathegory(e.target.dataset.name);
+    changeActiveMenu(e.target);
+    cardsDesc.changeCardsMode();
+    closeSideMenu();
+  }
 };
 
 $(".menu-wrapper").addEventListener('click', clickMenuHandle);
+
+// setTimeout(()=>{ cardsDesc.changeGameModeActive() }, 5000);
+
