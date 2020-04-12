@@ -105,23 +105,23 @@ cards.addEventListener('click', clickOnCard);
 
 const openSideMenu = () => {
   $(".hamburger").classList.add("hamburger_opened");
-  $(".menu-wrapper").style.left = "0";
+  $(".menu-wrapper").classList.add("menu-wrapper_open");
   $(".menu-shadow").classList.add("menu-shadow_active");
   document.body.style.overflow = "hidden";
 }
 
 const closeSideMenu = () => {
   $(".hamburger").classList.remove("hamburger_opened");
-  $(".menu-wrapper").style.left = "-400px";
+  $(".menu-wrapper").classList.remove("menu-wrapper_open");
   $(".menu-shadow").classList.remove("menu-shadow_active");
   document.body.style.overflow = "visible";
 }
 
 const clickHamburgerHandler = () => {
-  if ($(".menu-wrapper").style.left === "-400px" || $(".menu-wrapper").style.left === "") {
-    openSideMenu();
-  } else {
+  if ($(".menu-wrapper").classList.contains("menu-wrapper_open")) {
     closeSideMenu();
+  } else {
+    openSideMenu();
   }
 }
 
