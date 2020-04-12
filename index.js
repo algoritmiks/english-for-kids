@@ -42,7 +42,7 @@ class CardsDesk {
 
   loadCards() {
     const cathegoryItems = cardsData.cathegories[this.currentCathegory];
-    cathegoryItems.forEach((card)=> {
+    cathegoryItems.forEach((card) => {
       this.cards.push(new Card(cardsData[card]));
     })
   }
@@ -106,16 +106,15 @@ cards.addEventListener('click', clickOnCard);
 const openSideMenu = () => {
   $(".hamburger").classList.add("hamburger_opened");
   $(".menu-wrapper").style.left = "0";
-  $(".hamburger").classList.add("hamburger_opened");
   $(".menu-shadow").classList.add("menu-shadow_active");
-  document.body.style.overflow="hidden";
+  document.body.style.overflow = "hidden";
 }
 
 const closeSideMenu = () => {
   $(".hamburger").classList.remove("hamburger_opened");
   $(".menu-wrapper").style.left = "-400px";
   $(".menu-shadow").classList.remove("menu-shadow_active");
-  document.body.style.overflow="visible";
+  document.body.style.overflow = "visible";
 }
 
 const clickHamburgerHandler = () => {
@@ -128,7 +127,7 @@ const clickHamburgerHandler = () => {
 
 $(".hamburger").addEventListener('click', clickHamburgerHandler);
 
-$(".menu-shadow").addEventListener('click', (e)=>{
+$(".menu-shadow").addEventListener('click', (e) => {
   if (e.target.classList.contains("menu-shadow_active")) {
     closeSideMenu();
   }
@@ -155,5 +154,15 @@ const clickMenuHandle = (e) => {
 
 $(".menu-wrapper").addEventListener('click', clickMenuHandle);
 
-// setTimeout(()=>{ cardsDesc.changeGameModeActive() }, 5000);
+const clickSwitcherHandle = (e) => {
+  cardsDesc.changeGameModeActive();
+  if (cardsDesc.isModeGameActive) {
+    e.target.classList.add("switcher_on");
+  } else {
+    e.target.classList.remove("switcher_on");
+  }
+}
+
+$(".switcher").addEventListener('click', clickSwitcherHandle);
+
 
