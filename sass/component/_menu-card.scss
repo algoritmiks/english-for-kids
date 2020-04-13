@@ -6,8 +6,8 @@
   &:hover {
     box-shadow: 0 0 20px $color-card-box-shadow-hover;
   }
+  cursor: pointer;
 }
-
 
 .menu-card {
   display: flex;

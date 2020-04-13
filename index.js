@@ -5,37 +5,40 @@ const $All = c => document.querySelectorAll(c);
 
 class Card {
   constructor(card, cathegory) {
-    this.mp3 = card.mp3;
-    this.ru = card.ru;
-    this.en = card.en;
     this.img = card.img;
     if (cathegory === "main") {
+      this.cathegoryID = cardsData.menu[card.en][0];
+      this.cathegoryName = cardsData.menu[card.en][1];
       this.addMenuCardToDOM();
     } else {
+      this.mp3 = card.mp3;
+      this.ru = card.ru;
+      this.en = card.en;
       this.addCardToDOM();
     }
   }
 
   addMenuCardToDOM() {
-        //menu container
-        const menuContainer = document.createElement('div');
-        menuContainer.classList = "menu-container";
-        cards.appendChild(menuContainer);
-    
-        //menu card
-        const menuCard = document.createElement('div');
-        menuCard.classList = "menu-card";
-        menuContainer.appendChild(menuCard);
-    
-        const img = document.createElement('div');
-        img.classList = "menu-card__img";
-        img.style.backgroundImage = `url('./../../assets/img/${this.img}')`;
-        menuCard.appendChild(img);
-    
-        const descr = document.createElement('div');
-        descr.classList = "menu-card__description";
-        descr.innerText = "MENU";
-        menuCard.appendChild(descr);
+    //menu container
+    const menuContainer = document.createElement('div');
+    menuContainer.classList = "menu-container";
+    menuContainer.dataset.name = this.cathegoryID;
+    cards.appendChild(menuContainer);
+
+    //menu card
+    const menuCard = document.createElement('div');
+    menuCard.classList = "menu-card";
+    menuContainer.appendChild(menuCard);
+
+    const img = document.createElement('div');
+    img.classList = "menu-card__img";
+    img.style.backgroundImage = `url('./../../assets/img/${this.img}')`;
+    menuCard.appendChild(img);
+
+    const descr = document.createElement('div');
+    descr.classList = "menu-card__description";
+    descr.innerText = this.cathegoryName;
+    menuCard.appendChild(descr);
   }
 
   addCardToDOM() {
@@ -144,6 +147,16 @@ const sound = $(".mp3");
 
 
 const clickOnCardHandler = (e) => {
+  let menuCard = e.target.closest(".menu-container");
+  if (menuCard) {
+    cardsDesc.changeCathegory(menuCard.dataset.name);
+    $All(".menu-item").forEach(el => {
+      if (el.dataset.name === menuCard.dataset.name) {
+        changeActiveMenu(el);
+      }
+    })
+  }
+
   if (!cardsDesc.isModeGameActive) {
     let rotate = e.target.closest(".rotate");
     let card = e.target.closest(".card-container");

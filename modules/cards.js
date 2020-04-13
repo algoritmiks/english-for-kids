@@ -10,6 +10,17 @@ const cardsData = {
     clothes: ["skirt", "pants", "blouse", "dress", "boot", "shirt", "coat", "shoe"],
     emotions: ["sad", "angry", "happy", "tired", "surprised", "scared", "smile", "laugh"]
   },
+
+  menu: {
+    fly: ["action1", "Action 1"],
+    ride: ["action2", "Action 2"],
+    carry: ["action3", "Action 3"],
+    big: ["adjective", "Adjective"],
+    cat: ["animals1", "Animals 1"],
+    bird: ["animals2", "Animals 2"],
+    dress: ["clothes", "Clothes"],
+    happy: ["emotions", "Emotions"]
+  },
   
   //action 1
   cry: {
