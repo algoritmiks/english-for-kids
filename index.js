@@ -149,12 +149,9 @@ const sound = $(".mp3");
 const clickOnCardHandler = (e) => {
   let menuCard = e.target.closest(".menu-container");
   if (menuCard) {
-    cardsDesc.changeCathegory(menuCard.dataset.name);
-    $All(".menu-item").forEach(el => {
-      if (el.dataset.name === menuCard.dataset.name) {
-        changeActiveMenu(el);
-      }
-    })
+    const selectedCathegory = menuCard.dataset.name;
+    cardsDesc.changeCathegory(selectedCathegory);
+    changeActiveMenu($(`[data-name="${selectedCathegory}"]`));
   }
 
   if (!cardsDesc.isModeGameActive) {
