@@ -13,10 +13,14 @@ class Card {
   }
 
   addCardToDOM() {
+    const cardContainer = document.createElement('div');
+    cardContainer.classList = "card-container";
+    cards.appendChild(cardContainer);
+
     const card = document.createElement('div');
     card.classList = "card";
     card.dataset.name = this.en;
-    cards.appendChild(card);
+    cardContainer.appendChild(card);
 
     const img = document.createElement('div');
     img.classList = "card__img";
@@ -94,17 +98,33 @@ const cardsDesc = new CardsDesk();
 let sound = $(".mp3");
 
 
-const clickOnCard = (e) => {
+const clickOnCardHandler = (e) => {
   if (!cardsDesc.isModeGameActive) {
+    let rotate = e.target.closest(".rotate");
     let card = e.target.closest(".card");
-    if (card) {
+    if (rotate) {
+      card.classList.add("rotate_click");
+    }
+    if (card && !rotate && !card.classList.contains("rotate_click")) {
       sound.src = `./assets/mp3/${card.dataset.name}.mp3`;
       sound.play();
     }
   }
 };
 
-cards.addEventListener('click', clickOnCard);
+cards.addEventListener('click', clickOnCardHandler);
+
+
+
+const moveMouseOutCardHandler = (e) => {
+  if (!e.target.closest(".card")) {
+    $All(".card").forEach(card => {
+      card.classList.remove("rotate_click");
+    });
+  }
+};
+
+window.addEventListener('mousemove', moveMouseOutCardHandler);
 
 
 const openSideMenu = () => {

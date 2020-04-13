@@ -6,12 +6,19 @@
   margin: 10px;
   box-shadow: 0 0 10px $color-card-box-shadow;
   cursor: pointer;
+  transition: transform $time-rotate-cards;
+
+  &:hover {
+    box-shadow: 0 0 20px $color-card-box-shadow-hover;
+  }
 }
 
-.card:hover {
-  box-shadow: 0 0 20px $color-card-box-shadow-hover;
-}
 
+
+.card-container {
+  perspective: 800px;
+  border: 10px;
+}
 
 .card__img {
   width: 100%;
@@ -35,15 +42,19 @@
   position: relative;
   width: 20px;
   height: 20px;
-  bottom: 18px;
+  bottom: 19px;
   left: 270px;
   opacity: 0.5;
   background-image: url("./../../assets/img/rotate-icon.png");
   background-size: cover;
 }
 
-.full-image {
-  height: 250px;
+.rotate_click {
+  box-shadow: 0 0 20px $color-card-box-shadow-hover;
+  transform: rotateY(180deg);
+  transform-style: preserve-3d;
+  transition: transform $time-rotate-cards;
+  // backface-visibility: hidden;
 }
 
 .card__description_play {

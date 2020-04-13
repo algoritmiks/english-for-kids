@@ -17,7 +17,7 @@ html {
 .cards {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-around;
   padding: 10px;
 }
 
@@ -88,7 +88,7 @@ html {
 
 .switcher {
   position: relative;
-  width: 72px;
+  width: 75px;
   height: 38px;
   border-radius: 19px;
   background: #929292;
@@ -96,7 +96,14 @@ html {
   cursor: pointer;
   transition-duration: 300ms;
 }
-
+.switcher::before {
+  position: relative;
+  content: "OFF";
+  top: 11px;
+  left: 37px;
+  color: #fff;
+  font-weight: 600;
+}
 .switcher::after {
   content: "";
   height: 32px;
@@ -112,15 +119,20 @@ html {
 .switcher_on {
   background: #0a7f8f;
 }
-
+.switcher_on::before {
+  content: "ON";
+  left: 9px;
+}
 .switcher_on::after {
-  left: 37px;
+  left: 40px;
 }
 
 .play-mode-label {
+  font-size: 20px;
   font-weight: 600;
   margin-right: 10px;
   color: #464646;
+  user-select: none;
 }
 
 .card {
@@ -131,10 +143,15 @@ html {
   margin: 10px;
   box-shadow: 0 0 10px rgba(30, 30, 30, 0.5);
   cursor: pointer;
+  transition: transform 500ms;
 }
-
 .card:hover {
   box-shadow: 0 0 20px rgba(30, 30, 30, 0.7);
+}
+
+.card-container {
+  perspective: 800px;
+  border: 10px;
 }
 
 .card__img {
@@ -159,15 +176,18 @@ html {
   position: relative;
   width: 20px;
   height: 20px;
-  bottom: 18px;
+  bottom: 19px;
   left: 270px;
   opacity: 0.5;
   background-image: url("./../../assets/img/rotate-icon.png");
   background-size: cover;
 }
 
-.full-image {
-  height: 250px;
+.rotate_click {
+  box-shadow: 0 0 20px rgba(30, 30, 30, 0.7);
+  transform: rotateY(180deg);
+  transform-style: preserve-3d;
+  transition: transform 500ms;
 }
 
 .card__description_play {
