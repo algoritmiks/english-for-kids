@@ -13,13 +13,33 @@ class Card {
   }
 
   addCardToDOM() {
+    const cardScene = document.createElement('div');
+    cardScene.classList = "card-scene";
+    cards.appendChild(cardScene);
+
     const cardContainer = document.createElement('div');
     cardContainer.classList = "card-container";
-    cards.appendChild(cardContainer);
+    cardContainer.dataset.name = this.en;
+    cardScene.appendChild(cardContainer);
 
+    //back card
+    const cardBack = document.createElement('div');
+    cardBack.classList = "card card__back";
+    cardContainer.appendChild(cardBack);
+
+    const imgBack = document.createElement('div');
+    imgBack.classList = "card__img";
+    imgBack.style.backgroundImage = `url('./../../assets/img/${this.img}')`;
+    cardBack.appendChild(imgBack);
+
+    const descriptionBack = document.createElement('div');
+    descriptionBack.classList = "card__description";
+    descriptionBack.innerText = this.ru;
+    cardBack.appendChild(descriptionBack);
+
+    //front card
     const card = document.createElement('div');
     card.classList = "card";
-    card.dataset.name = this.en;
     cardContainer.appendChild(card);
 
     const img = document.createElement('div');
@@ -101,7 +121,7 @@ let sound = $(".mp3");
 const clickOnCardHandler = (e) => {
   if (!cardsDesc.isModeGameActive) {
     let rotate = e.target.closest(".rotate");
-    let card = e.target.closest(".card");
+    let card = e.target.closest(".card-container");
     if (rotate) {
       card.classList.add("rotate_click");
     }
@@ -117,8 +137,8 @@ cards.addEventListener('click', clickOnCardHandler);
 
 
 const moveMouseOutCardHandler = (e) => {
-  if (!e.target.closest(".card")) {
-    $All(".card").forEach(card => {
+  if (!e.target.closest(".card-container")) {
+    $All(".card-container").forEach(card => {
       card.classList.remove("rotate_click");
     });
   }
@@ -188,5 +208,3 @@ const clickSwitcherHandle = (e) => {
 }
 
 $(".switcher").addEventListener('click', clickSwitcherHandle);
-
-
