@@ -7,7 +7,7 @@ const cardsData = {
     animals1: ["cat", "chick", "chicken", "dog", "horse", "pig", "rabbit", "sheep"],
     animals2: ["bird", "fish", "frog", "giraffe", "lion", "mouse", "turtle", "dolphin"],
     clothes: ["skirt", "pants", "blouse", "dress", "boot", "shirt", "coat", "shoe"],
-    emotion: ["sad", "angry", "happy", "tired", "surprised", "scared", "smile", "laugh"]
+    emotions: ["sad", "angry", "happy", "tired", "surprised", "scared", "smile", "laugh"]
   },
   
   //action 1

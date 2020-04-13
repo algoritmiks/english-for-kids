@@ -64,7 +64,7 @@ class Card {
 
 class CardsDesk {
   constructor() {
-    this.currentCathegory = "emotion";
+    this.currentCathegory = "emotions";
     this.cards = [];
     this.isModeGameActive = false;
     this.loadCards();
