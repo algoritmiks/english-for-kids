@@ -37,6 +37,7 @@ html {
   left: -400px;
   transition: all ease 1s;
   box-shadow: 0 0 40px rgba(0, 0, 0, 0.4);
+  z-index: 3;
 }
 
 .menu-list {
