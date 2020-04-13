@@ -4,12 +4,38 @@ const $ = c => document.querySelector(c);
 const $All = c => document.querySelectorAll(c);
 
 class Card {
-  constructor(card) {
+  constructor(card, cathegory) {
     this.mp3 = card.mp3;
     this.ru = card.ru;
     this.en = card.en;
     this.img = card.img;
-    this.addCardToDOM();
+    if (cathegory === "main") {
+      this.addMenuCardToDOM();
+    } else {
+      this.addCardToDOM();
+    }
+  }
+
+  addMenuCardToDOM() {
+        //menu container
+        const menuContainer = document.createElement('div');
+        menuContainer.classList = "menu-container";
+        cards.appendChild(menuContainer);
+    
+        //menu card
+        const menuCard = document.createElement('div');
+        menuCard.classList = "menu-card";
+        menuContainer.appendChild(menuCard);
+    
+        const img = document.createElement('div');
+        img.classList = "menu-card__img";
+        img.style.backgroundImage = `url('./../../assets/img/${this.img}')`;
+        menuCard.appendChild(img);
+    
+        const descr = document.createElement('div');
+        descr.classList = "menu-card__description";
+        descr.innerText = "MENU";
+        menuCard.appendChild(descr);
   }
 
   addCardToDOM() {
@@ -64,7 +90,7 @@ class Card {
 
 class CardsDesk {
   constructor() {
-    this.currentCathegory = "emotions";
+    this.currentCathegory = "main";
     this.cards = [];
     this.isModeGameActive = false;
     this.loadCards();
@@ -73,7 +99,7 @@ class CardsDesk {
   loadCards() {
     const cathegoryItems = cardsData.cathegories[this.currentCathegory];
     cathegoryItems.forEach((card) => {
-      this.cards.push(new Card(cardsData[card]));
+      this.cards.push(new Card(cardsData[card], this.currentCathegory));
     })
   }
 

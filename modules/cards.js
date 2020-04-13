@@ -1,5 +1,6 @@
 const cardsData = {
   cathegories: {
+    main: ["fly", "ride", "carry", "big", "cat", "bird", "dress", "happy"],
     action1: ["cry", "dance", "dive", "draw", "tofish", "fly", "hug", "jump"],
     action2: ["open", "play", "point", "ride", "run", "sing", "skip", "swim"],
     action3: ["argue", "build", "carry", "catch", "drive", "drop", "pull", "push"],

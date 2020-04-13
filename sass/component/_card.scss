@@ -18,6 +18,7 @@
 .card {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   width: 300px;
   height: 250px;
 }
@@ -71,6 +72,8 @@
   height: 250px;
   background-position: 50%;
 }
+
+
 
 @media (hover: hover) {
   .card:hover {
