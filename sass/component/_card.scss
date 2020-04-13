@@ -8,6 +8,8 @@
 .card-container {
   transition: transform 1s; 
   transform-style: preserve-3d;
+  box-shadow: 0 0 10px $color-card-box-shadow;
+  cursor: pointer;
   &:hover {
     box-shadow: 0 0 20px $color-card-box-shadow-hover;
   }
@@ -18,8 +20,6 @@
   flex-wrap: wrap;
   width: 300px;
   height: 250px;
-  box-shadow: 0 0 10px $color-card-box-shadow;
-  cursor: pointer;
   transition: transform $time-rotate-cards;
 }
 

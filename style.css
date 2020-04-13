@@ -145,6 +145,8 @@ html {
 .card-container {
   transition: transform 1s;
   transform-style: preserve-3d;
+  box-shadow: 0 0 10px rgba(30, 30, 30, 0.5);
+  cursor: pointer;
 }
 .card-container:hover {
   box-shadow: 0 0 20px rgba(30, 30, 30, 0.7);
@@ -155,8 +157,6 @@ html {
   flex-wrap: wrap;
   width: 300px;
   height: 250px;
-  box-shadow: 0 0 10px rgba(30, 30, 30, 0.5);
-  cursor: pointer;
   transition: transform 500ms;
 }
 

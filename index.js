@@ -13,10 +13,12 @@ class Card {
   }
 
   addCardToDOM() {
+    //card scene
     const cardScene = document.createElement('div');
     cardScene.classList = "card-scene";
     cards.appendChild(cardScene);
 
+    //card container
     const cardContainer = document.createElement('div');
     cardContainer.classList = "card-container";
     cardContainer.dataset.name = this.en;
@@ -38,25 +40,25 @@ class Card {
     cardBack.appendChild(descriptionBack);
 
     //front card
-    const card = document.createElement('div');
-    card.classList = "card";
-    cardContainer.appendChild(card);
+    const cardFront = document.createElement('div');
+    cardFront.classList = "card";
+    cardContainer.appendChild(cardFront);
 
-    const img = document.createElement('div');
-    img.classList = "card__img";
-    img.style.backgroundImage = `url('./../../assets/img/${this.img}')`;
-    card.appendChild(img);
+    const imgFront = document.createElement('div');
+    imgFront.classList = "card__img";
+    imgFront.style.backgroundImage = `url('./../../assets/img/${this.img}')`;
+    cardFront.appendChild(imgFront);
 
-    const description = document.createElement('div');
-    description.classList = "card__description";
-    description.innerText = this.en;
-    card.appendChild(description);
+    const descriptionFront = document.createElement('div');
+    descriptionFront.classList = "card__description";
+    descriptionFront.innerText = this.en;
+    cardFront.appendChild(descriptionFront);
 
     const rotate = document.createElement('div');
     rotate.classList = "rotate";
-    description.appendChild(rotate);
+    descriptionFront.appendChild(rotate);
 
-    this.cardDOM = card;
+    this.cardDOM = cardContainer;
   }
 }
 
@@ -111,11 +113,8 @@ class CardsDesk {
 }
 
 const cards = $(".cards");
-
 const cardsDesc = new CardsDesk();
-
-
-let sound = $(".mp3");
+const sound = $(".mp3");
 
 
 const clickOnCardHandler = (e) => {
