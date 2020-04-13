@@ -220,6 +220,10 @@ html {
   margin: 10px;
   background-color: rgba(255, 255, 255, 0.301);
   border-radius: 10px;
+  box-shadow: 0 0 10px rgba(30, 30, 30, 0.5);
+}
+.menu-container:hover {
+  box-shadow: 0 0 20px rgba(30, 30, 30, 0.7);
 }
 
 .menu-card {
