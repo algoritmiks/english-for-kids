@@ -144,7 +144,7 @@ html {
 }
 
 .card-container {
-  transition: transform 1s;
+  transition: transform 500ms;
   transform-style: preserve-3d;
   box-shadow: 0 0 10px rgba(30, 30, 30, 0.5);
   cursor: pointer;
@@ -158,7 +158,6 @@ html {
   flex-wrap: wrap;
   width: 300px;
   height: 250px;
-  transition: transform 500ms;
 }
 
 .card__back {
@@ -173,7 +172,7 @@ html {
   width: 100%;
   height: 200px;
   background-size: cover;
-  transition-duration: 300ms;
+  transition-duration: 500ms;
 }
 
 .card__description {
