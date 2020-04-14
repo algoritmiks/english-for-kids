@@ -260,7 +260,7 @@ const clickMenuHandle = (e) => {
     cardsDesk.changeCardsMode();
     closeSideMenu();
     if (cardsDesk.isGameStarted) {
-      finishGame();
+      stopGame();
     }
   }
 };
@@ -274,7 +274,7 @@ const clickSwitcherHandle = (e) => {
   } else {
     e.target.classList.remove("switcher_on");
     if (cardsDesk.isGameStarted) {
-      finishGame();
+      stopGame();
     };
   }
 }
@@ -289,7 +289,7 @@ const shuffle = (arr) => {
 let currentCards = [];
 let currentCard = {};
 
-const finishGame = () => {
+const stopGame = () => {
   $(".start-btn").classList.remove("repeat");
   currentCard = {};
   currentCards = [];
@@ -312,7 +312,7 @@ const getNextCard = () => {
   if (currentCards) {
     return currentCards.pop();
   } else {
-    finishGame();
+    stopGame();
   }
 };
 
