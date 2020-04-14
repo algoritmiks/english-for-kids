@@ -13,9 +13,20 @@
   user-select: none;
   outline: none;  
   color: $color-description-text;
+
+  &::before {
+    content: "play";
+  }
 }
 
 .start-btn_hidden {
   display: none;
 }
 
+
+.repeat {
+  &::before {
+    content: "repeat";
+  }
+  
+}

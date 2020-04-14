@@ -96,6 +96,7 @@ class CardsDesk {
     this.currentCathegory = "main";
     this.cards = [];
     this.isModeGameActive = false;
+    this.isGameStarted = false;
     this.loadCards();
   }
 
@@ -149,23 +150,30 @@ class CardsDesk {
     }
     this.setStartButtonStatus();
   }
+
+  changeGameStarted() {
+    this.isGameStarted = !this.isGameStarted;
+  }
 }
 
 const cards = $(".cards");
-const cardsDesc = new CardsDesk();
+const cardsDesk = new CardsDesk();
 const sound = $(".mp3");
+const rightWrongSound = $(".right-wrong-sound");
+const winnerSound = $(".winner-sound");
+const loserSound = $(".loser-sound");
 
 
 const clickOnCardHandler = (e) => {
   let menuCard = e.target.closest(".menu-container");
   if (menuCard) {
     const selectedCathegory = menuCard.dataset.name;
-    cardsDesc.changeCathegory(selectedCathegory);
+    cardsDesk.changeCathegory(selectedCathegory);
     changeActiveMenu($(`[data-name="${selectedCathegory}"]`));
-    cardsDesc.changeCardsMode();
+    cardsDesk.changeCardsMode();
   }
 
-  if (!cardsDesc.isModeGameActive) {
+  if (!cardsDesk.isModeGameActive) {
     let rotate = e.target.closest(".rotate");
     let card = e.target.closest(".card-container");
     if (rotate) {
@@ -173,6 +181,17 @@ const clickOnCardHandler = (e) => {
     }
     if (card && !rotate && !card.classList.contains("rotate_click")) {
       sound.src = `./assets/mp3/${card.dataset.name}.mp3`;
+      sound.play();
+    }
+  }
+
+  if (cardsDesk.isModeGameActive && cardsDesk.isGameStarted) {
+    
+    if (e.target.closest(".card-container").dataset.name === currentCard.en) {
+      sound.src= `./assets/mp3/right.mp3`;
+      sound.play();
+    } else {
+      sound.src= `./assets/mp3/wrong.mp3`;
       sound.play();
     }
   }
@@ -235,21 +254,27 @@ const changeActiveMenu = (current) => {
 
 const clickMenuHandle = (e) => {
   if (e.target.tagName === "LI") {
-    cardsDesc.changeCathegory(e.target.dataset.name);
+    cardsDesk.changeCathegory(e.target.dataset.name);
     changeActiveMenu(e.target);
-    cardsDesc.changeCardsMode();
+    cardsDesk.changeCardsMode();
     closeSideMenu();
+    if (cardsDesk.isGameStarted) {
+      finishGame();
+    }
   }
 };
 
 $(".menu-wrapper").addEventListener('click', clickMenuHandle);
 
 const clickSwitcherHandle = (e) => {
-  cardsDesc.changeGameModeActive();
-  if (cardsDesc.isModeGameActive) {
+  cardsDesk.changeGameModeActive();
+  if (cardsDesk.isModeGameActive) {
     e.target.classList.add("switcher_on");
   } else {
     e.target.classList.remove("switcher_on");
+    if (cardsDesk.isGameStarted) {
+      finishGame();
+    };
   }
 }
 
@@ -260,24 +285,53 @@ const shuffle = (arr) => {
   return arr;
 }
 
+let currentCards = [];
+let currentCard = {};
 
-
-const selectCard = (card) => {
-  sound.src = `./assets/mp3/${card.mp3}`;
-  
-  // sound.play();
-
+const finishGame = () => {
+  $(".start-btn").classList.remove("repeat");
+  currentCard = {};
+  currentCards = [];
+  cardsDesk.changeGameStarted();
 }
 
-const clickStartButton = (e) => {
-  // if (e.target.classList.contains)
-  let currentCards = [...cardsDesc.cards];
+
+const getNextCard = () => {
+  if (currentCards) {
+    return currentCards.pop();
+  } else {
+    finishGame();
+  }
+  
+};
+
+const runNewGame = () => {
+  cardsDesk.changeGameStarted();
+  currentCards = [...cardsDesk.cards];
   shuffle(currentCards);
   
-  currentCards.pop();
-    selectCard(card);
-  
+  currentCard = getNextCard();
+  sound.src = `./assets/mp3/${currentCard.mp3}`;
+  sound.play();
+}
 
+
+const repeatCurrentWord = () => {
+  sound.src = `./assets/mp3/${currentCard.mp3}`;
+  sound.play(); 
+}
+
+
+const clickStartButton = (e) => {
+  if (!cardsDesk.isGameStarted) {
+    $(".start-btn").classList.add("repeat");
+    runNewGame();
+  } else {
+    repeatCurrentWord();
+  }
 }
 
 $(".start-btn").addEventListener('click', clickStartButton);
+
+window.cardsDesk = cardsDesk;
+window.currentCards = currentCards;
