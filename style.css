@@ -255,4 +255,25 @@ html {
   user-select: none;
 }
 
+.buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.start-btn {
+  font-size: 24px;
+  border-radius: 5px;
+  width: 150px;
+  height: 50px;
+  cursor: pointer;
+  user-select: none;
+  outline: none;
+  color: #464646;
+}
+
+.start-btn_hidden {
+  display: none;
+}
+
 /*# sourceMappingURL=style.css.map */

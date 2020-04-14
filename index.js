@@ -113,9 +113,18 @@ class CardsDesk {
     this.loadCards();
   }
 
+  setStartButtonStatus() {
+    if (this.currentCathegory !== "main" && this.isModeGameActive) {
+      $(".start-btn").classList.remove("start-btn_hidden");
+    } else {
+      $(".start-btn").classList.add("start-btn_hidden");
+    }
+  }
+
   changeGameModeActive() {
     this.isModeGameActive = !this.isModeGameActive;
     this.changeCardsMode();
+    this.setStartButtonStatus();
   }
 
   setCardsGameMode() {
@@ -138,6 +147,7 @@ class CardsDesk {
     } else {
       this.setCardsTrainingMode();
     }
+    this.setStartButtonStatus();
   }
 }
 
@@ -152,6 +162,7 @@ const clickOnCardHandler = (e) => {
     const selectedCathegory = menuCard.dataset.name;
     cardsDesc.changeCathegory(selectedCathegory);
     changeActiveMenu($(`[data-name="${selectedCathegory}"]`));
+    cardsDesc.changeCardsMode();
   }
 
   if (!cardsDesc.isModeGameActive) {
@@ -243,3 +254,30 @@ const clickSwitcherHandle = (e) => {
 }
 
 $(".switcher").addEventListener('click', clickSwitcherHandle);
+
+const shuffle = (arr) => {
+  arr.sort(() => Math.random() - 0.5);
+  return arr;
+}
+
+
+
+const selectCard = (card) => {
+  sound.src = `./assets/mp3/${card.mp3}`;
+  
+  // sound.play();
+
+}
+
+const clickStartButton = (e) => {
+  // if (e.target.classList.contains)
+  let currentCards = [...cardsDesc.cards];
+  shuffle(currentCards);
+  
+  currentCards.pop();
+    selectCard(card);
+  
+
+}
+
+$(".start-btn").addEventListener('click', clickStartButton);
