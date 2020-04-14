@@ -159,9 +159,6 @@ class CardsDesk {
 const cards = $(".cards");
 const cardsDesk = new CardsDesk();
 const sound = $(".mp3");
-const rightWrongSound = $(".right-wrong-sound");
-const winnerSound = $(".winner-sound");
-const loserSound = $(".loser-sound");
 
 
 const clickOnCardHandler = (e) => {
@@ -173,9 +170,11 @@ const clickOnCardHandler = (e) => {
     cardsDesk.changeCardsMode();
   }
 
+  const card = e.target.closest(".card-container");
+
   if (!cardsDesk.isModeGameActive) {
-    let rotate = e.target.closest(".rotate");
-    let card = e.target.closest(".card-container");
+    const rotate = e.target.closest(".rotate");
+    
     if (rotate) {
       card.classList.add("rotate_click");
     }
@@ -186,11 +185,13 @@ const clickOnCardHandler = (e) => {
   }
 
   if (cardsDesk.isModeGameActive && cardsDesk.isGameStarted) {
-    
-    if (e.target.closest(".card-container").dataset.name === currentCard.en) {
+    if (card.dataset.name === currentCard.en && !card.classList.contains("card-container_done")) {
+      card.classList.add("card-container_done");
       sound.src= `./assets/mp3/right.mp3`;
       sound.play();
-    } else {
+      continueGame();
+    } 
+    if (card.dataset.name !== currentCard.en && !card.classList.contains("card-container_done")) {
       sound.src= `./assets/mp3/wrong.mp3`;
       sound.play();
     }
@@ -292,7 +293,18 @@ const finishGame = () => {
   $(".start-btn").classList.remove("repeat");
   currentCard = {};
   currentCards = [];
+  $All(".card-container").forEach((el)=>{
+    el.classList.remove("card-container_done");
+  });
   cardsDesk.changeGameStarted();
+}
+
+const continueGame = (timeout=1000) => {
+  setTimeout(() => {
+    currentCard = getNextCard();
+    sound.src = `./assets/mp3/${currentCard.mp3}`;
+    sound.play();
+  }, timeout);
 }
 
 
@@ -302,17 +314,13 @@ const getNextCard = () => {
   } else {
     finishGame();
   }
-  
 };
 
 const runNewGame = () => {
   cardsDesk.changeGameStarted();
   currentCards = [...cardsDesk.cards];
   shuffle(currentCards);
-  
-  currentCard = getNextCard();
-  sound.src = `./assets/mp3/${currentCard.mp3}`;
-  sound.play();
+  continueGame(0);
 }
 
 

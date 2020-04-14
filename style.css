@@ -174,7 +174,6 @@ html {
   height: 200px;
   background-size: cover;
   transition-duration: 500ms;
-  /* opacity: 0.5; */
 }
 
 .card__description {
@@ -210,6 +209,10 @@ html {
 .card__img_play {
   height: 250px;
   background-position: 50%;
+}
+
+.card-container_done {
+  opacity: 0.4;
 }
 
 @media (hover: hover) {
