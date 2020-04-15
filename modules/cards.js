@@ -6,7 +6,7 @@ const cardsData = {
     action3: ["blow", "eat", "listen", "read", "sit", "sniff", "train", "write"],
     fruits: ["apple", "fig", "grape", "lemon", "orange", "pear", "plum", "strawberry"],
     animals1: ["dog", "chick", "chicken", "horse", "pig", "rabbit", "sheep", "cat"],
-    animals2: ["bird", "fish", "frog", "giraffe", "lion", "mouse", "turtle", "dolphin"],
+    animals2: ["bird", "fish", "frog", "giraffe", "lion", "mouse", "bear", "dolphin"],
     clothes: ["skirt", "pants", "blouse", "dress", "boot", "shirt", "coat", "shoe"],
     emotions: ["sad", "angry", "happy", "tired", "surprised", "scared", "smile", "laugh"]
   },
@@ -350,11 +350,11 @@ const cardsData = {
     mp3: "mouse.mp3"
   },
 
-  turtle: {
-    ru: "черепаха",
-    en: "turtle",
-    img: "turtle.jpg",
-    mp3: "turtle.mp3"
+  bear: {
+    ru: "медведь",
+    en: "bear",
+    img: "bear.jpg",
+    mp3: "bear.mp3"
   },
 
   dolphin: {

@@ -14,6 +14,29 @@ html {
   height: 100px;
 }
 
+.score-container {
+  display: flex;
+  justify-content: flex-end;
+  margin: auto;
+  height: 35px;
+  width: calc(100% - 40px);
+  overflow-x: hidden;
+}
+
+.score-item {
+  min-width: 35px;
+  height: 35px;
+  background-size: cover;
+}
+
+.score-item_right {
+  background-image: url("./../../assets/img/rightSign.png");
+}
+
+.score-item_wrong {
+  background-image: url("./../../assets/img/wrongSing.png");
+}
+
 .cards {
   display: flex;
   flex-wrap: wrap;

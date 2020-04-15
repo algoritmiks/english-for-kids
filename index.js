@@ -2,6 +2,7 @@ import { cardsData } from "./modules/cards.js";
 
 const $ = c => document.querySelector(c);
 const $All = c => document.querySelectorAll(c);
+const scoreContainer = $(".score-container");
 
 class Card {
   constructor(card, cathegory) {
@@ -154,6 +155,15 @@ class CardsDesk {
   changeGameStarted() {
     this.isGameStarted = !this.isGameStarted;
   }
+
+  addRightSingToScoreContainer() {
+    scoreContainer.innerHTML += `<div class="score-item score-item_right"></div>`;
+  }
+
+  addWrongSingToScoreContainer() {
+    scoreContainer.innerHTML += `<div class="score-item score-item_wrong"></div>`;
+  }
+
 }
 
 const cards = $(".cards");
@@ -189,9 +199,11 @@ const clickOnCardHandler = (e) => {
       card.classList.add("card-container_done");
       sound.src= `./assets/mp3/right.mp3`;
       sound.play();
+      cardsDesk.addRightSingToScoreContainer();
       continueGame();
     } 
     if (card.dataset.name !== currentCard.en && !card.classList.contains("card-container_done")) {
+      cardsDesk.addWrongSingToScoreContainer();
       sound.src= `./assets/mp3/wrong.mp3`;
       sound.play();
     }
@@ -293,6 +305,7 @@ const stopGame = () => {
   $(".start-btn").classList.remove("repeat");
   currentCard = {};
   currentCards = [];
+  scoreContainer.innerHTML = "";
   $All(".card-container").forEach((el)=>{
     el.classList.remove("card-container_done");
   });
