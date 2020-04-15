@@ -331,7 +331,7 @@ const continueGame = (timeout = 1000) => {
 }
 
 const finishGame = () => {
-
+  let timeOut = 5000;
   $(".switcher").classList.remove("switcher_on");
   cardsDesk.changeGameModeActive();
   $(".game-finish").classList.remove("game-finish_hidden");
@@ -343,6 +343,7 @@ const finishGame = () => {
     sound.play();
   } else {
     $(".game-finish").classList.add("game-finish_winner");
+    timeOut = 3000;
     sound.src = "./assets/mp3/winner.mp3";
     sound.play();
   }
@@ -355,7 +356,7 @@ const finishGame = () => {
     $(".game-finish").dataset.errors = "";
     cardsDesk.changeCathegory("main");
     changeActiveMenu($(`[data-name="main"]`));
-  }, 4000);
+  }, timeOut);
 
 }
 
