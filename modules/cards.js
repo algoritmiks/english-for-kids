@@ -1,10 +1,10 @@
 const cardsData = {
   cathegories: {
-    main: ["fly", "ride", "carry", "big", "cat", "bird", "dress", "happy"],
+    main: ["fly", "ride", "blow", "teal", "cat", "bird", "dress", "happy"],
     action1: ["cry", "dance", "dive", "draw", "tofish", "fly", "hug", "jump"],
     action2: ["open", "play", "point", "ride", "run", "sing", "skip", "swim"],
-    action3: ["argue", "build", "carry", "catch", "drive", "drop", "pull", "push"],
-    adjective: ["big", "small", "fast", "slow", "friendly", "unfriendly", "young", "old"],
+    action3: ["blow", "eat", "listen", "read", "sit", "sniff", "train", "write"],
+    colors: ["aqua", "blue", "green", "orange", "purple", "red", "teal", "yellow"],
     animals1: ["cat", "chick", "chicken", "dog", "horse", "pig", "rabbit", "sheep"],
     animals2: ["bird", "fish", "frog", "giraffe", "lion", "mouse", "turtle", "dolphin"],
     clothes: ["skirt", "pants", "blouse", "dress", "boot", "shirt", "coat", "shoe"],
@@ -14,8 +14,8 @@ const cardsData = {
   menu: {
     fly: ["action1", "Action 1"],
     ride: ["action2", "Action 2"],
-    carry: ["action3", "Action 3"],
-    big: ["adjective", "Adjective"],
+    blow: ["action3", "Action 3"],
+    teal: ["colors", "Colors"],
     cat: ["animals1", "Animals 1"],
     bird: ["animals2", "Animals 2"],
     dress: ["clothes", "Clothes"],
@@ -137,117 +137,117 @@ const cardsData = {
   },
 
   //action 3
-  argue: {
-    ru: "спорить",
-    en: "argue",
-    img: "argue.jpg",
-    mp3: "argue.mp3"
+  blow: {
+    ru: "дуть",
+    en: "blow",
+    img: "blow.jpg",
+    mp3: "blow.mp3"
   },
 
-  build: {
-    ru: "строить",
-    en: "build",
-    img: "build.jpg",
-    mp3: "build.mp3"
+  eat: {
+    ru: "кушать",
+    en: "eat",
+    img: "eat.jpg",
+    mp3: "eat.mp3"
   },
 
-  carry: {
-    ru: "нести",
-    en: "carry",
-    img: "carry.jpg",
-    mp3: "carry.mp3"
+  listen: {
+    ru: "слушать",
+    en: "listen",
+    img: "listen.jpg",
+    mp3: "listen.mp3"
   },
 
-  catch: {
-    ru: "ловить",
-    en: "catch",
-    img: "catch.jpg",
-    mp3: "catch.mp3"
+  read: {
+    ru: "читать",
+    en: "read",
+    img: "read.jpg",
+    mp3: "read.mp3"
   },
 
-  drive: {
-    ru: "водить машину",
-    en: "drive",
-    img: "drive.jpg",
-    mp3: "drive.mp3"
+  sit: {
+    ru: "сидеть",
+    en: "sit",
+    img: "sit.jpg",
+    mp3: "sit.mp3"
   },
 
-  drop: {
-    ru: "падать",
-    en: "drop",
-    img: "drop.jpg",
-    mp3: "drop.mp3"
+  sniff: {
+    ru: "нюхать",
+    en: "sniff",
+    img: "sniff.jpg",
+    mp3: "sniff.mp3"
   },
 
-  pull: {
-    ru: "тянуть",
-    en: "pull",
-    img: "pull.jpg",
-    mp3: "pull.mp3"
+  train: {
+    ru: "тренироваться",
+    en: "train",
+    img: "train.jpg",
+    mp3: "train.mp3"
   },
 
-  push: {
-    ru: "толкать",
-    en: "push",
-    img: "push.jpg",
-    mp3: "push.mp3"
+  write: {
+    ru: "писать",
+    en: "write",
+    img: "write.jpg",
+    mp3: "write.mp3"
   },
 
-  //adjective
-  big: {
-    ru: "большой",
-    en: "big",
-    img: "big.jpg",
-    mp3: "big.mp3"
+  //colors
+  aqua: {
+    ru: "морская волна",
+    en: "aqua",
+    img: "aqua.jpg",
+    mp3: "aqua.mp3"
   },
 
-  small: {
-    ru: "маленький",
-    en: "small",
-    img: "small.jpg",
-    mp3: "small.mp3"
+  blue: {
+    ru: "синий",
+    en: "blue",
+    img: "blue.jpg",
+    mp3: "blue.mp3"
   },
 
-  fast: {
-    ru: "быстрый",
-    en: "fast",
-    img: "fast.jpg",
-    mp3: "fast.mp3"
+  green: {
+    ru: "зеленый",
+    en: "green",
+    img: "green.jpg",
+    mp3: "green.mp3"
   },
 
-  slow: {
-    ru: "медленный",
-    en: "slow",
-    img: "slow.jpg",
-    mp3: "slow.mp3"
+  orange: {
+    ru: "оранжевый",
+    en: "orange",
+    img: "orange.jpg",
+    mp3: "orange.mp3"
   },
 
-  friendly: {
-    ru: "дружелюбный",
-    en: "friendly",
-    img: "friendly.jpg",
-    mp3: "friendly.mp3"
+  purple: {
+    ru: "фиолетовый",
+    en: "purple",
+    img: "purple.jpg",
+    mp3: "purple.mp3"
   },
 
-  unfriendly: {
-    ru: "недружелюбный",
-    en: "unfriendly",
-    img: "unfriendly.jpg",
-    mp3: "unfriendly.mp3"
+  red: {
+    ru: "красный",
+    en: "red",
+    img: "red.jpg",
+    mp3: "red.mp3"
   },
 
-  young: {
-    ru: "молодой",
-    en: "young",
-    img: "young.jpg",
-    mp3: "young.mp3"
+  teal: {
+    ru: "сине-зеленый",
+    en: "teal",
+    img: "teal.jpg",
+    mp3: "teal.mp3"
   },
 
-  old: {
-    ru: "старый",
-    en: "old",
-    img: "old.jpg",
-    mp3: "old.mp3"
+  yellow: {
+    ru: "желтый",
+    en: "yellow",
+    img: "yellow.jpg",
+    mp3: "yellow.mp3"
   },
 
   //animals 1
@@ -266,7 +266,7 @@ const cardsData = {
   },
 
   chicken: {
-    ru: "ципленок",
+    ru: "курица",
     en: "chicken",
     img: "chicken.jpg",
     mp3: "chicken.mp3"
