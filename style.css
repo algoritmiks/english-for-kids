@@ -212,7 +212,7 @@ html {
 }
 
 .card-container_done {
-  opacity: 0.2;
+  opacity: 0.5;
 }
 
 @media (hover: hover) {

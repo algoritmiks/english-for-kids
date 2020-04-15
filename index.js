@@ -33,9 +33,6 @@ class Card {
     const img = document.createElement('div');
     img.classList = "menu-card__img";
     img.style.backgroundImage = `url('./../../assets/img/${this.img}')`;
-    if (this.img === "teal.jpg") {
-      img.style.backgroundImage = `url('./../../assets/img/colors.jpg')`;
-    }
     menuCard.appendChild(img);
 
     const descr = document.createElement('div');
@@ -315,7 +312,9 @@ const getNextCard = () => {
   if (currentCards.length > 0) {
     return currentCards.pop();
   } else {
-    alert('game over');
+    // alert('game over');
+    sound.src = "./assets/mp3/winner.mp3";
+    sound.play(); 
     stopGame();
   }
 };

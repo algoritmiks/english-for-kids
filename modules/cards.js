@@ -1,10 +1,10 @@
 const cardsData = {
   cathegories: {
-    main: ["fly", "ride", "blow", "teal", "dog", "bird", "dress", "happy"],
+    main: ["fly", "ride", "blow", "lemon", "dog", "bird", "dress", "happy"],
     action1: ["cry", "dance", "dive", "draw", "tofish", "fly", "hug", "jump"],
     action2: ["open", "play", "point", "ride", "run", "sing", "skip", "swim"],
     action3: ["blow", "eat", "listen", "read", "sit", "sniff", "train", "write"],
-    colors: ["aqua", "blue", "green", "orange", "purple", "red", "teal", "yellow"],
+    fruits: ["apple", "fig", "grape", "lemon", "orange", "pear", "plum", "strawberry"],
     animals1: ["dog", "chick", "chicken", "horse", "pig", "rabbit", "sheep", "cat"],
     animals2: ["bird", "fish", "frog", "giraffe", "lion", "mouse", "turtle", "dolphin"],
     clothes: ["skirt", "pants", "blouse", "dress", "boot", "shirt", "coat", "shoe"],
@@ -15,7 +15,7 @@ const cardsData = {
     fly: ["action1", "Action 1"],
     ride: ["action2", "Action 2"],
     blow: ["action3", "Action 3"],
-    teal: ["colors", "Colors"],
+    lemon: ["fruits", "Fruits"],
     dog: ["animals1", "Animals 1"],
     bird: ["animals2", "Animals 2"],
     dress: ["clothes", "Clothes"],
@@ -193,61 +193,61 @@ const cardsData = {
     mp3: "write.mp3"
   },
 
-  //colors
-  aqua: {
-    ru: "морская волна",
-    en: "aqua",
-    img: "aqua.jpg",
-    mp3: "aqua.mp3"
+  //fruits
+  apple: {
+    ru: "яблоко",
+    en: "apple",
+    img: "apple.jpg",
+    mp3: "apple.mp3"
   },
 
-  blue: {
-    ru: "синий",
-    en: "blue",
-    img: "blue.jpg",
-    mp3: "blue.mp3"
+  fig: {
+    ru: "инжир",
+    en: "fig",
+    img: "fig.jpg",
+    mp3: "fig.mp3"
   },
 
-  green: {
-    ru: "зеленый",
-    en: "green",
-    img: "green.jpg",
-    mp3: "green.mp3"
+  grape: {
+    ru: "виноград",
+    en: "grape",
+    img: "grape.jpg",
+    mp3: "grape.mp3"
   },
 
   orange: {
-    ru: "оранжевый",
+    ru: "апельсин",
     en: "orange",
     img: "orange.jpg",
     mp3: "orange.mp3"
   },
 
-  purple: {
-    ru: "фиолетовый",
-    en: "purple",
-    img: "purple.jpg",
-    mp3: "purple.mp3"
+  lemon: {
+    ru: "лимон",
+    en: "lemon",
+    img: "lemon.jpg",
+    mp3: "lemon.mp3"
   },
 
-  red: {
-    ru: "красный",
-    en: "red",
-    img: "red.jpg",
-    mp3: "red.mp3"
+  pear: {
+    ru: "груша",
+    en: "pear",
+    img: "pear.jpg",
+    mp3: "pear.mp3"
   },
 
-  teal: {
-    ru: "сине-зеленый",
-    en: "teal",
-    img: "teal.jpg",
-    mp3: "teal.mp3"
+  plum: {
+    ru: "слива",
+    en: "plum",
+    img: "plum.jpg",
+    mp3: "plum.mp3"
   },
 
-  yellow: {
-    ru: "желтый",
-    en: "yellow",
-    img: "yellow.jpg",
-    mp3: "yellow.mp3"
+  strawberry: {
+    ru: "клубника",
+    en: "strawberry",
+    img: "strawberry.jpg",
+    mp3: "strawberry.mp3"
   },
 
   //animals 1
