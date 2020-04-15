@@ -352,6 +352,7 @@ const finishGame = () => {
     $(".game-finish").classList.remove("game-finish_winner");
     $(".game-finish").classList.remove("game-finish_loser");
     cardsDesk.changeCathegory("main");
+    changeActiveMenu($(`[data-name="main"]`));
   }, 4000);
 
 }
