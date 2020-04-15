@@ -1,11 +1,11 @@
 const cardsData = {
   cathegories: {
-    main: ["fly", "ride", "blow", "teal", "cat", "bird", "dress", "happy"],
+    main: ["fly", "ride", "blow", "teal", "dog", "bird", "dress", "happy"],
     action1: ["cry", "dance", "dive", "draw", "tofish", "fly", "hug", "jump"],
     action2: ["open", "play", "point", "ride", "run", "sing", "skip", "swim"],
     action3: ["blow", "eat", "listen", "read", "sit", "sniff", "train", "write"],
     colors: ["aqua", "blue", "green", "orange", "purple", "red", "teal", "yellow"],
-    animals1: ["cat", "chick", "chicken", "dog", "horse", "pig", "rabbit", "sheep"],
+    animals1: ["dog", "chick", "chicken", "horse", "pig", "rabbit", "sheep", "cat"],
     animals2: ["bird", "fish", "frog", "giraffe", "lion", "mouse", "turtle", "dolphin"],
     clothes: ["skirt", "pants", "blouse", "dress", "boot", "shirt", "coat", "shoe"],
     emotions: ["sad", "angry", "happy", "tired", "surprised", "scared", "smile", "laugh"]
@@ -16,7 +16,7 @@ const cardsData = {
     ride: ["action2", "Action 2"],
     blow: ["action3", "Action 3"],
     teal: ["colors", "Colors"],
-    cat: ["animals1", "Animals 1"],
+    dog: ["animals1", "Animals 1"],
     bird: ["animals2", "Animals 2"],
     dress: ["clothes", "Clothes"],
     happy: ["emotions", "Emotions"]
