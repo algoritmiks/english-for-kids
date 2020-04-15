@@ -58,7 +58,7 @@ html {
 }
 .game-finish_loser::after {
   position: absolute;
-  content: "Total";
+  content: attr(data-errors);
   color: #505050;
   font-size: 25px;
   margin-top: 450px;

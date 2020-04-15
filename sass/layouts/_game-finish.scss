@@ -54,7 +54,7 @@
   
   &::after {
     position: absolute;
-    content: "Total";
+    content: attr(data-errors);
     color: $color-winner-font;
     font-size: 25px;
     margin-top: 450px;

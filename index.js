@@ -338,6 +338,7 @@ const finishGame = () => {
 
   if (currentGameErrors > 0) {
     $(".game-finish").classList.add("game-finish_loser");
+    $(".game-finish").dataset.errors = `Total ${currentGameErrors} errors.`;
     sound.src = "./assets/mp3/loser.mp3";
     sound.play();
   } else {
@@ -351,6 +352,7 @@ const finishGame = () => {
     $(".game-finish").classList.add("game-finish_hidden");
     $(".game-finish").classList.remove("game-finish_winner");
     $(".game-finish").classList.remove("game-finish_loser");
+    $(".game-finish").dataset.errors = "";
     cardsDesk.changeCathegory("main");
     changeActiveMenu($(`[data-name="main"]`));
   }, 4000);
