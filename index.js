@@ -172,40 +172,44 @@ const sound = $(".mp3");
 
 
 const clickOnCardHandler = (e) => {
-  let menuCard = e.target.closest(".menu-container");
-  if (menuCard) {
-    const selectedCathegory = menuCard.dataset.name;
-    cardsDesk.changeCathegory(selectedCathegory);
-    changeActiveMenu($(`[data-name="${selectedCathegory}"]`));
-    cardsDesk.changeCardsMode();
-  }
-
-  const card = e.target.closest(".card-container");
-
-  if (!cardsDesk.isModeGameActive) {
-    const rotate = e.target.closest(".rotate");
-    
-    if (rotate) {
-      card.classList.add("rotate_click");
+  if (e.target.className !== "cards") {
+    let menuCard = e.target.closest(".menu-container");
+    if (menuCard) {
+      const selectedCathegory = menuCard.dataset.name;
+      cardsDesk.changeCathegory(selectedCathegory);
+      changeActiveMenu($(`[data-name="${selectedCathegory}"]`));
+      cardsDesk.changeCardsMode();
     }
-    if (card && !rotate && !card.classList.contains("rotate_click")) {
-      sound.src = `./assets/mp3/${card.dataset.name}.mp3`;
-      sound.play();
-    }
-  }
 
-  if (cardsDesk.isModeGameActive && cardsDesk.isGameStarted) {
-    if (card.dataset.name === currentCard.en && !card.classList.contains("card-container_done")) {
-      card.classList.add("card-container_done");
-      sound.src= `./assets/mp3/right.mp3`;
-      sound.play();
-      cardsDesk.addRightSingToScoreContainer();
-      continueGame();
-    } 
-    if (card.dataset.name !== currentCard.en && !card.classList.contains("card-container_done")) {
-      cardsDesk.addWrongSingToScoreContainer();
-      sound.src= `./assets/mp3/wrong.mp3`;
-      sound.play();
+    const card = e.target.closest(".card-container");
+
+    if (!cardsDesk.isModeGameActive) {
+      const rotate = e.target.closest(".rotate");
+
+      if (rotate) {
+        card.classList.add("rotate_click");
+      }
+      if (card && !rotate && !card.classList.contains("rotate_click")) {
+        sound.src = `./assets/mp3/${card.dataset.name}.mp3`;
+        sound.play();
+      }
+    }
+
+    if (cardsDesk.isModeGameActive && cardsDesk.isGameStarted) {
+
+      if (card.dataset.name === currentCard.en && !card.classList.contains("card-container_done")) {
+        card.classList.add("card-container_done");
+        sound.src = `./assets/mp3/right.mp3`;
+        sound.play();
+        cardsDesk.addRightSingToScoreContainer();
+        continueGame();
+      }
+      if (card.dataset.name !== currentCard.en && !card.classList.contains("card-container_done")) {
+        cardsDesk.addWrongSingToScoreContainer();
+        currentGameErrors += 1;
+        sound.src = `./assets/mp3/wrong.mp3`;
+        sound.play();
+      }
     }
   }
 };
@@ -279,6 +283,8 @@ const clickMenuHandle = (e) => {
 
 $(".menu-wrapper").addEventListener('click', clickMenuHandle);
 
+
+
 const clickSwitcherHandle = (e) => {
   cardsDesk.changeGameModeActive();
   if (cardsDesk.isModeGameActive) {
@@ -300,24 +306,54 @@ const shuffle = (arr) => {
 
 let currentCards = [];
 let currentCard = {};
+let currentGameErrors = 0;
 
 const stopGame = () => {
   $(".start-btn").classList.remove("repeat");
   currentCard = {};
   currentCards = [];
+  currentGameErrors = 0;
   scoreContainer.innerHTML = "";
-  $All(".card-container").forEach((el)=>{
+  $All(".card-container").forEach((el) => {
     el.classList.remove("card-container_done");
   });
   cardsDesk.changeGameStarted();
 }
 
-const continueGame = (timeout=1000) => {
+const continueGame = (timeout = 1000) => {
   setTimeout(() => {
     currentCard = getNextCard();
-    sound.src = `./assets/mp3/${currentCard.mp3}`;
-    sound.play();
+    if (currentCard) {
+      sound.src = `./assets/mp3/${currentCard.mp3}`;
+      sound.play();
+    }
   }, timeout);
+}
+
+const finishGame = () => {
+
+  $(".switcher").classList.remove("switcher_on");
+  cardsDesk.changeGameModeActive();
+  $(".game-finish").classList.remove("game-finish_hidden");
+
+  if (currentGameErrors > 0) {
+    $(".game-finish").classList.add("game-finish_loser");
+    sound.src = "./assets/mp3/loser.mp3";
+    sound.play();
+  } else {
+    $(".game-finish").classList.add("game-finish_winner");
+    sound.src = "./assets/mp3/winner.mp3";
+    sound.play();
+  }
+  stopGame();
+
+  setTimeout(() => {
+    $(".game-finish").classList.add("game-finish_hidden");
+    $(".game-finish").classList.remove("game-finish_winner");
+    $(".game-finish").classList.remove("game-finish_loser");
+    cardsDesk.changeCathegory("main");
+  }, 4000);
+
 }
 
 
@@ -325,10 +361,7 @@ const getNextCard = () => {
   if (currentCards.length > 0) {
     return currentCards.pop();
   } else {
-    // alert('game over');
-    sound.src = "./assets/mp3/winner.mp3";
-    sound.play(); 
-    stopGame();
+    finishGame();
   }
 };
 
@@ -342,7 +375,7 @@ const runNewGame = () => {
 
 const repeatCurrentWord = () => {
   sound.src = `./assets/mp3/${currentCard.mp3}`;
-  sound.play(); 
+  sound.play();
 }
 
 
