@@ -15,7 +15,7 @@ module.exports = (env, options) => {
 
     output: {
       path: path.resolve(__dirname, 'dist'),
-      filename: 'bundle.js',
+      filename: `[hash].js`,
     },
 
     module: {
@@ -47,7 +47,7 @@ module.exports = (env, options) => {
         template: './index.html'
       }),
       new MiniCssExtractPlugin({
-        filename: './style.css'
+        filename: `./[hash].css`
       }),
       new CopyWebpackPlugin(
         [

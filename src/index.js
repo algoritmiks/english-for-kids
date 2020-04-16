@@ -33,7 +33,7 @@ class Card {
 
     const img = document.createElement('div');
     img.classList = "menu-card__img";
-    img.style.backgroundImage = `url('../src/assets/img/${this.img}')`;
+    img.style.backgroundImage = `url('./assets/img/${this.img}')`;
     menuCard.appendChild(img);
 
     const descr = document.createElement('div');
@@ -61,7 +61,7 @@ class Card {
 
     const imgBack = document.createElement('div');
     imgBack.classList = "card__img";
-    imgBack.style.backgroundImage = `url('../src/assets/img/${this.img}')`;
+    imgBack.style.backgroundImage = `url('./assets/img/${this.img}')`;
     cardBack.appendChild(imgBack);
 
     const descriptionBack = document.createElement('div');
@@ -76,7 +76,7 @@ class Card {
 
     const imgFront = document.createElement('div');
     imgFront.classList = "card__img";
-    imgFront.style.backgroundImage = `url('../src/assets/img/${this.img}')`;
+    imgFront.style.backgroundImage = `url('./assets/img/${this.img}')`;
     cardFront.appendChild(imgFront);
 
     const descriptionFront = document.createElement('div');
