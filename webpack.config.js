@@ -18,6 +18,13 @@ module.exports = (env, options) => {
       filename: `[hash].js`,
     },
 
+    devtool: isProduction ? false : 'inline-source-map',
+
+    devServer: {
+      contentBase: 'dist',
+      hot: true,
+    },
+
     module: {
       rules: [
         {

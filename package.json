@@ -4,7 +4,8 @@
   "description": "English for kids",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack --mode development",
+    
+    "dev": "webpack-dev-server",
     "build": "webpack --mode production",
     "style": "sass --watch src/sass/style.scss ./src/sass/style.css"
   },

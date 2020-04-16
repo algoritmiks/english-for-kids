@@ -309,6 +309,7 @@ let currentCard = {};
 let currentGameErrors = 0;
 
 const stopGame = () => {
+  debugger;
   $(".start-btn").classList.remove("repeat");
   currentCard = {};
   currentCards = [];
