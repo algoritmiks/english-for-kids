@@ -1,4 +1,4 @@
-import { cardsData } from "./modules/cards.js";
+import cardsData from "./modules/cards";
 
 const $ = c => document.querySelector(c);
 const $All = c => document.querySelectorAll(c);
@@ -190,7 +190,7 @@ const clickOnCardHandler = (e) => {
         card.classList.add("rotate_click");
       }
       if (card && !rotate && !card.classList.contains("rotate_click")) {
-        sound.src = `./src/assets/mp3/${card.dataset.name}.mp3`;
+        sound.src = `./assets/mp3/${card.dataset.name}.mp3`;
         sound.play();
       }
     }
@@ -199,7 +199,7 @@ const clickOnCardHandler = (e) => {
 
       if (card.dataset.name === currentCard.en && !card.classList.contains("card-container_done")) {
         card.classList.add("card-container_done");
-        sound.src = `./src/assets/mp3/right.mp3`;
+        sound.src = `./assets/mp3/right.mp3`;
         sound.play();
         cardsDesk.addRightSingToScoreContainer();
         continueGame();
@@ -207,7 +207,7 @@ const clickOnCardHandler = (e) => {
       if (card.dataset.name !== currentCard.en && !card.classList.contains("card-container_done")) {
         cardsDesk.addWrongSingToScoreContainer();
         currentGameErrors += 1;
-        sound.src = `./src/assets/mp3/wrong.mp3`;
+        sound.src = `./assets/mp3/wrong.mp3`;
         sound.play();
       }
     }
@@ -324,7 +324,7 @@ const continueGame = (timeout = 1000) => {
   setTimeout(() => {
     currentCard = getNextCard();
     if (currentCard) {
-      sound.src = `./src/assets/mp3/${currentCard.mp3}`;
+      sound.src = `./assets/mp3/${currentCard.mp3}`;
       sound.play();
     }
   }, timeout);
@@ -339,12 +339,12 @@ const finishGame = () => {
   if (currentGameErrors > 0) {
     $(".game-finish").classList.add("game-finish_loser");
     $(".game-finish").dataset.errors = `Total ${currentGameErrors} errors.`;
-    sound.src = "./src/assets/mp3/loser.mp3";
+    sound.src = "./assets/mp3/loser.mp3";
     sound.play();
   } else {
     $(".game-finish").classList.add("game-finish_winner");
     timeOut = 3000;
-    sound.src = "./src/assets/mp3/winner.mp3";
+    sound.src = "./assets/mp3/winner.mp3";
     sound.play();
   }
   stopGame();
@@ -378,7 +378,7 @@ const runNewGame = () => {
 
 
 const repeatCurrentWord = () => {
-  sound.src = `./src/assets/mp3/${currentCard.mp3}`;
+  sound.src = `./assets/mp3/${currentCard.mp3}`;
   sound.play();
 }
 

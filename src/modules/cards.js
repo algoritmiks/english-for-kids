@@ -479,4 +479,4 @@ const cardsData = {
   }
 };
 
-export { cardsData };
+export default cardsData;
