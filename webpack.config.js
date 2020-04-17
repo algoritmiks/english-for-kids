@@ -11,7 +11,7 @@ module.exports = (env, options) => {
   const config = {
     mode: isProduction ? 'production' : 'development',
 
-    entry:  ['./src/index.js', './src/sass/style.scss'],
+    entry: ['./src/index.js', './src/sass/style.scss'],
 
     output: {
       path: path.resolve(__dirname, 'dist'),
@@ -36,15 +36,15 @@ module.exports = (env, options) => {
         {
           test: /\.(png|svg|jpe?g|gif)$/,
           use: [
-              {
-                  loader: 'file-loader',
-              }
+            {
+              loader: 'file-loader',
+            }
           ]
-      },
-      {
-        test: /\.html$/,
-        loader: 'html-loader',
-    }
+        },
+        {
+          test: /\.html$/,
+          loader: 'html-loader',
+        }
       ]
     },
 
@@ -58,8 +58,8 @@ module.exports = (env, options) => {
       }),
       new CopyWebpackPlugin(
         [
-          {from: './src/assets/img', to: './assets/img/'},
-          {from: './src/assets/mp3', to: './assets/mp3/'}
+          { from: './src/assets/img', to: './assets/img/' },
+          { from: './src/assets/mp3', to: './assets/mp3/' }
         ]
       )
     ]

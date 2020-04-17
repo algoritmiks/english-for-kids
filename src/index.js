@@ -171,6 +171,11 @@ const cardsDesk = new CardsDesk();
 const sound = $(".mp3");
 
 
+const turnCardBack = (cardScene, card) => {
+  card.classList.remove("rotate_click");
+  cardScene.removeEventListener('mouseleave', () => { turnCardBack(cardScene, card) });
+}
+
 const clickOnCardHandler = (e) => {
   if (e.target.className !== "cards") {
     let menuCard = e.target.closest(".menu-container");
@@ -182,13 +187,16 @@ const clickOnCardHandler = (e) => {
     }
 
     const card = e.target.closest(".card-container");
+    const cardScene = e.target.closest(".card-scene");
 
     if (!cardsDesk.isModeGameActive) {
       const rotate = e.target.closest(".rotate");
 
       if (rotate) {
         card.classList.add("rotate_click");
+        cardScene.addEventListener('mouseleave', () => { turnCardBack(cardScene, card) } );
       }
+
       if (card && !rotate && !card.classList.contains("rotate_click")) {
         sound.src = `./assets/mp3/${card.dataset.name}.mp3`;
         sound.play();
@@ -215,18 +223,6 @@ const clickOnCardHandler = (e) => {
 };
 
 cards.addEventListener('click', clickOnCardHandler);
-
-
-
-const moveMouseOutCardHandler = (e) => {
-  if (!e.target.closest(".card-container")) {
-    $All(".card-container").forEach(card => {
-      card.classList.remove("rotate_click");
-    });
-  }
-};
-
-window.addEventListener('mousemove', moveMouseOutCardHandler);
 
 
 const openSideMenu = () => {
@@ -309,7 +305,6 @@ let currentCard = {};
 let currentGameErrors = 0;
 
 const stopGame = () => {
-  debugger;
   $(".start-btn").classList.remove("repeat");
   currentCard = {};
   currentCards = [];
