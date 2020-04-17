@@ -67,7 +67,6 @@ const clickOnCardHandler = (e) => {
 
 cards.addEventListener('click', clickOnCardHandler);
 
-
 const openSideMenu = () => {
   $('.hamburger').classList.add('hamburger_opened');
   $('.menu-wrapper').classList.add('menu-wrapper_open');
@@ -121,7 +120,6 @@ const clickMenuHandle = (e) => {
 
 $('.menu-wrapper').addEventListener('click', clickMenuHandle);
 
-
 const clickSwitcherHandle = (e) => {
   cardsDesk.changeGameModeActive();
   if (cardsDesk.isModeGameActive) {
@@ -140,7 +138,6 @@ const shuffle = (arr) => {
   arr.sort(() => Math.random() - 0.5);
   return arr;
 };
-
 
 const stopGame = () => {
   $('.start-btn').classList.remove('repeat');
