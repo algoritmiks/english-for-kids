@@ -1,175 +1,10 @@
-import cardsData from "./modules/cards";
-
+import { CardsDesk } from "./modules/CardsDesk";
 const $ = c => document.querySelector(c);
 const $All = c => document.querySelectorAll(c);
 const scoreContainer = $(".score-container");
-
-class Card {
-  constructor(card, cathegory) {
-    this.img = card.img;
-    if (cathegory === "main") {
-      this.cathegoryID = cardsData.menu[card.en][0];
-      this.cathegoryName = cardsData.menu[card.en][1];
-      this.addMenuCardToDOM();
-    } else {
-      this.mp3 = card.mp3;
-      this.ru = card.ru;
-      this.en = card.en;
-      this.addCardToDOM();
-    }
-  }
-
-  addMenuCardToDOM() {
-    //menu container
-    const menuContainer = document.createElement('div');
-    menuContainer.classList = "menu-container";
-    menuContainer.dataset.name = this.cathegoryID;
-    cards.appendChild(menuContainer);
-
-    //menu card
-    const menuCard = document.createElement('div');
-    menuCard.classList = "menu-card";
-    menuContainer.appendChild(menuCard);
-
-    const img = document.createElement('div');
-    img.classList = "menu-card__img";
-    img.style.backgroundImage = `url('./assets/img/${this.img}')`;
-    menuCard.appendChild(img);
-
-    const descr = document.createElement('div');
-    descr.classList = "menu-card__description";
-    descr.innerText = this.cathegoryName;
-    menuCard.appendChild(descr);
-  }
-
-  addCardToDOM() {
-    //card scene
-    const cardScene = document.createElement('div');
-    cardScene.classList = "card-scene";
-    cards.appendChild(cardScene);
-
-    //card container
-    const cardContainer = document.createElement('div');
-    cardContainer.classList = "card-container";
-    cardContainer.dataset.name = this.en;
-    cardScene.appendChild(cardContainer);
-
-    //back card
-    const cardBack = document.createElement('div');
-    cardBack.classList = "card card__back";
-    cardContainer.appendChild(cardBack);
-
-    const imgBack = document.createElement('div');
-    imgBack.classList = "card__img";
-    imgBack.style.backgroundImage = `url('./assets/img/${this.img}')`;
-    cardBack.appendChild(imgBack);
-
-    const descriptionBack = document.createElement('div');
-    descriptionBack.classList = "card__description";
-    descriptionBack.innerText = this.ru;
-    cardBack.appendChild(descriptionBack);
-
-    //front card
-    const cardFront = document.createElement('div');
-    cardFront.classList = "card";
-    cardContainer.appendChild(cardFront);
-
-    const imgFront = document.createElement('div');
-    imgFront.classList = "card__img";
-    imgFront.style.backgroundImage = `url('./assets/img/${this.img}')`;
-    cardFront.appendChild(imgFront);
-
-    const descriptionFront = document.createElement('div');
-    descriptionFront.classList = "card__description";
-    descriptionFront.innerText = this.en;
-    cardFront.appendChild(descriptionFront);
-
-    const rotate = document.createElement('div');
-    rotate.classList = "rotate";
-    descriptionFront.appendChild(rotate);
-
-    this.cardDOM = cardContainer;
-  }
-}
-
-class CardsDesk {
-  constructor() {
-    this.currentCathegory = "main";
-    this.cards = [];
-    this.isModeGameActive = false;
-    this.isGameStarted = false;
-    this.loadCards();
-  }
-
-  loadCards() {
-    const cathegoryItems = cardsData.cathegories[this.currentCathegory];
-    cathegoryItems.forEach((card) => {
-      this.cards.push(new Card(cardsData[card], this.currentCathegory));
-    })
-  }
-
-  changeCathegory(cathegory) {
-    this.currentCathegory = cathegory;
-    this.cards = [];
-    cards.innerHTML = "";
-    this.loadCards();
-  }
-
-  setStartButtonStatus() {
-    if (this.currentCathegory !== "main" && this.isModeGameActive) {
-      $(".start-btn").classList.remove("start-btn_hidden");
-    } else {
-      $(".start-btn").classList.add("start-btn_hidden");
-    }
-  }
-
-  changeGameModeActive() {
-    this.isModeGameActive = !this.isModeGameActive;
-    this.changeCardsMode();
-    this.setStartButtonStatus();
-  }
-
-  setCardsGameMode() {
-    $All(".card").forEach(card => {
-      card.firstElementChild.classList.add("card__img_play");
-      card.lastElementChild.classList.add("card__description_play");
-    });
-  }
-
-  setCardsTrainingMode() {
-    $All(".card").forEach(card => {
-      card.firstElementChild.classList.remove("card__img_play");
-      card.lastElementChild.classList.remove("card__description_play");
-    });
-  }
-
-  changeCardsMode() {
-    if (this.isModeGameActive) {
-      this.setCardsGameMode();
-    } else {
-      this.setCardsTrainingMode();
-    }
-    this.setStartButtonStatus();
-  }
-
-  changeGameStarted() {
-    this.isGameStarted = !this.isGameStarted;
-  }
-
-  addRightSingToScoreContainer() {
-    scoreContainer.innerHTML += `<div class="score-item score-item_right"></div>`;
-  }
-
-  addWrongSingToScoreContainer() {
-    scoreContainer.innerHTML += `<div class="score-item score-item_wrong"></div>`;
-  }
-
-}
-
 const cards = $(".cards");
 const cardsDesk = new CardsDesk();
 const sound = $(".mp3");
-
 
 const turnCardBack = (cardScene, card) => {
   card.classList.remove("rotate_click");
@@ -280,7 +115,6 @@ const clickMenuHandle = (e) => {
 $(".menu-wrapper").addEventListener('click', clickMenuHandle);
 
 
-
 const clickSwitcherHandle = (e) => {
   cardsDesk.changeGameModeActive();
   if (cardsDesk.isModeGameActive) {
@@ -356,7 +190,6 @@ const finishGame = () => {
 
 }
 
-
 const getNextCard = () => {
   if (currentCards.length > 0) {
     return currentCards.pop();
@@ -372,12 +205,10 @@ const runNewGame = () => {
   continueGame(0);
 }
 
-
 const repeatCurrentWord = () => {
   sound.src = `./assets/mp3/${currentCard.mp3}`;
   sound.play();
 }
-
 
 const clickStartButton = (e) => {
   if (!cardsDesk.isGameStarted) {
@@ -389,3 +220,5 @@ const clickStartButton = (e) => {
 }
 
 $(".start-btn").addEventListener('click', clickStartButton);
+
+export { cards, $,  $All, scoreContainer };
