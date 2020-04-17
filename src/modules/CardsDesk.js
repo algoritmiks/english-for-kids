@@ -1,10 +1,10 @@
 import cardsData from './cards';
-import { Card } from './Card';
-import { cards, $, $All, scoreContainer } from './../index';
+import Card from './Card';
+import { cards, $, $All, scoreContainer } from '../index';
 
-export class CardsDesk {
+export default class CardsDesk {
   constructor() {
-    this.currentCathegory = "main";
+    this.currentCathegory = 'main';
     this.cards = [];
     this.isModeGameActive = false;
     this.isGameStarted = false;
@@ -15,21 +15,21 @@ export class CardsDesk {
     const cathegoryItems = cardsData.cathegories[this.currentCathegory];
     cathegoryItems.forEach((card) => {
       this.cards.push(new Card(cardsData[card], this.currentCathegory));
-    })
+    });
   }
 
   changeCathegory(cathegory) {
     this.currentCathegory = cathegory;
     this.cards = [];
-    cards.innerHTML = "";
+    cards.innerHTML = '';
     this.loadCards();
   }
 
   setStartButtonStatus() {
-    if (this.currentCathegory !== "main" && this.isModeGameActive) {
-      $(".start-btn").classList.remove("start-btn_hidden");
+    if (this.currentCathegory !== 'main' && this.isModeGameActive) {
+      $('.start-btn').classList.remove('start-btn_hidden');
     } else {
-      $(".start-btn").classList.add("start-btn_hidden");
+      $('.start-btn').classList.add('start-btn_hidden');
     }
   }
 
@@ -40,16 +40,16 @@ export class CardsDesk {
   }
 
   setCardsGameMode() {
-    $All(".card").forEach(card => {
-      card.firstElementChild.classList.add("card__img_play");
-      card.lastElementChild.classList.add("card__description_play");
+    $All('.card').forEach((card) => {
+      card.firstElementChild.classList.add('card__img_play');
+      card.lastElementChild.classList.add('card__description_play');
     });
   }
 
   setCardsTrainingMode() {
-    $All(".card").forEach(card => {
-      card.firstElementChild.classList.remove("card__img_play");
-      card.lastElementChild.classList.remove("card__description_play");
+    $All('.card').forEach((card) => {
+      card.firstElementChild.classList.remove('card__img_play');
+      card.lastElementChild.classList.remove('card__description_play');
     });
   }
 
@@ -67,10 +67,10 @@ export class CardsDesk {
   }
 
   addRightSingToScoreContainer() {
-    scoreContainer.innerHTML += `<div class="score-item score-item_right"></div>`;
+    scoreContainer.innerHTML += '<div class="score-item score-item_right"></div>';
   }
 
   addWrongSingToScoreContainer() {
-    scoreContainer.innerHTML += `<div class="score-item score-item_wrong"></div>`;
+    scoreContainer.innerHTML += '<div class="score-item score-item_wrong"></div>';
   }
 }

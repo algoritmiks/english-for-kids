@@ -16,11 +16,12 @@ module.exports = {
     },
     "rules": {
       "linebreak-style": 0,
-      "max-classes-per-file": 0,
       "no-use-before-define": 0,
       "no-else-return": 0,
       "class-methods-use-this": 0,
       "prefer-destructuring": 0,
-      "consistent-return": 0
+      "consistent-return": 0,
+      "import/no-cycle": 0,
+      "object-curly-newline": 0
     }
 };
