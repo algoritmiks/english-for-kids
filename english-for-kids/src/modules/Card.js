@@ -2,11 +2,11 @@ import cardsData from './cards';
 import { cards } from '../index';
 
 export default class Card {
-  constructor(card, cathegory) {
+  constructor(card, category) {
     this.img = card.img;
-    if (cathegory === 'main') {
-      this.cathegoryID = cardsData.menu[card.en][0];
-      this.cathegoryName = cardsData.menu[card.en][1];
+    if (category === 'main') {
+      this.categoryID = cardsData.menu[card.en][0];
+      this.categoryName = cardsData.menu[card.en][1];
       this.addMenuCardToDOM();
     } else {
       this.mp3 = card.mp3;
@@ -20,7 +20,7 @@ export default class Card {
     // menu container
     const menuContainer = document.createElement('div');
     menuContainer.classList = 'menu-container';
-    menuContainer.dataset.name = this.cathegoryID;
+    menuContainer.dataset.name = this.categoryID;
     cards.appendChild(menuContainer);
 
     // menu card
@@ -35,7 +35,7 @@ export default class Card {
 
     const descr = document.createElement('div');
     descr.classList = 'menu-card__description';
-    descr.innerText = this.cathegoryName;
+    descr.innerText = this.categoryName;
     menuCard.appendChild(descr);
   }
 

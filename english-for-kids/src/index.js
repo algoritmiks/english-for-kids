@@ -21,13 +21,59 @@ const playSound = (src) => {
   sound.play();
 };
 
+const createNewKeyInLocalStorage = (key, value) => {
+  localStorage.setItem(key, value);
+};
+
+const clearStatistics = () => {
+  localStorage.clear();
+  cardsDesk.clearStatisticsTable();
+  cardsDesk.loadStatistics();
+};
+
+$('.clear-statistics-btn').addEventListener('click', clearStatistics);
+
+const changeStatistics = (cardName, correctAnswer) => {
+  const cardInStorage = JSON.parse(localStorage.getItem(cardName));
+  // training
+  if (!cardsDesk.isModeGameActive) {
+    if (cardInStorage) {
+      cardInStorage.clicks += 1;
+      localStorage.setItem(cardName, JSON.stringify(cardInStorage));
+    } else {
+      createNewKeyInLocalStorage(cardName, JSON.stringify({ clicks: 1, right: 0, wrong: 0 }));
+    }
+  }
+  // gameplay
+  if (cardsDesk.isModeGameActive) {
+    // card exist
+    if (cardInStorage) {
+      if (correctAnswer) {
+        cardInStorage.right += 1;
+        localStorage.setItem(cardName, JSON.stringify(cardInStorage));
+      } else {
+        cardInStorage.wrong += 1;
+        localStorage.setItem(cardName, JSON.stringify(cardInStorage));
+      }
+    }
+    // new card
+    if (!cardInStorage) {
+      if (correctAnswer) {
+        createNewKeyInLocalStorage(cardName, JSON.stringify({ clicks: 0, right: 1, wrong: 0 }));
+      } else {
+        createNewKeyInLocalStorage(cardName, JSON.stringify({ clicks: 0, right: 0, wrong: 1 }));
+      }
+    }
+  }
+};
+
 const clickOnCardHandler = (e) => {
   if (e.target.className !== 'cards') {
     const menuCard = e.target.closest('.menu-container');
     if (menuCard) {
-      const selectedCathegory = menuCard.dataset.name;
-      cardsDesk.changeCathegory(selectedCathegory);
-      changeActiveMenu($(`[data-name="${selectedCathegory}"]`));
+      const selectedCategory = menuCard.dataset.name;
+      cardsDesk.changeCategory(selectedCategory);
+      changeActiveMenu($(`[data-name="${selectedCategory}"]`));
       cardsDesk.changeCardsMode();
     }
 
@@ -43,6 +89,7 @@ const clickOnCardHandler = (e) => {
       }
 
       if (card && !rotate && !card.classList.contains('rotate_click')) {
+        changeStatistics(card.dataset.name);
         playSound(`./assets/mp3/${card.dataset.name}.mp3`);
       }
     }
@@ -50,6 +97,7 @@ const clickOnCardHandler = (e) => {
     if (cardsDesk.isModeGameActive && cardsDesk.isGameStarted) {
       if (card.dataset.name === currentCard.en && !card.classList.contains('card-container_done')) {
         card.classList.add('card-container_done');
+        changeStatistics(currentCard.en, true);
         playSound('./assets/mp3/right.mp3');
 
         cardsDesk.addRightSingToScoreContainer();
@@ -59,6 +107,7 @@ const clickOnCardHandler = (e) => {
       if (card.dataset.name !== currentCard.en && !card.classList.contains('card-container_done')) {
         cardsDesk.addWrongSingToScoreContainer();
         currentGameErrors += 1;
+        changeStatistics(currentCard.en, false);
         playSound('./assets/mp3/wrong.mp3');
       }
     }
@@ -108,7 +157,7 @@ const changeActiveMenu = (current) => {
 
 const clickMenuHandle = (e) => {
   if (e.target.tagName === 'LI') {
-    cardsDesk.changeCathegory(e.target.dataset.name);
+    cardsDesk.changeCategory(e.target.dataset.name);
     changeActiveMenu(e.target);
     cardsDesk.changeCardsMode();
     closeSideMenu();
@@ -183,7 +232,7 @@ const finishGame = () => {
     $('.game-finish').classList.remove('game-finish_winner');
     $('.game-finish').classList.remove('game-finish_loser');
     $('.game-finish').dataset.errors = '';
-    cardsDesk.changeCathegory('main');
+    cardsDesk.changeCategory('main');
     changeActiveMenu($('[data-name="main"]'));
   }, timeOut);
 };
@@ -217,5 +266,70 @@ const clickStartButton = () => {
 };
 
 $('.start-btn').addEventListener('click', clickStartButton);
+
+const sortDirection = [false, false, false, false, false, false, false];
+
+const getSortFunction = (type, colNum) => {
+  if (type === 'num') {
+    return (rowA, rowB) => {
+      return rowB.cells[colNum].innerHTML - rowA.cells[colNum].innerHTML;
+    };
+  } else {
+    return (rowA, rowB) => {
+      return rowA.cells[colNum].innerHTML > rowB.cells[colNum].innerHTML ? 1 : -1;
+    };
+  }
+};
+
+const getBackSortFunction = (type, colNum) => {
+  if (type === 'num') {
+    return (rowA, rowB) => {
+      return rowA.cells[colNum].innerHTML - rowB.cells[colNum].innerHTML;
+    };
+  } else {
+    return (rowA, rowB) => {
+      return rowA.cells[colNum].innerHTML < rowB.cells[colNum].innerHTML ? 1 : -1;
+    };
+  }
+};
+
+const tbody = $('.statistics-table').querySelector('tbody');
+
+const sortTable = (colNum, type, train) => {
+  const rowsArray = Array.from(tbody.rows);
+  if (train) {
+    rowsArray.sort(getSortFunction(type, colNum));
+  } else {
+    if (sortDirection[colNum]) {
+      sortDirection[colNum] = !sortDirection[colNum];
+      rowsArray.sort(getBackSortFunction(type, colNum));
+    } else {
+      sortDirection[colNum] = !sortDirection[colNum];
+      rowsArray.sort(getSortFunction(type, colNum));
+    }
+  }
+  return rowsArray;
+};
+
+$('.statistics-table').addEventListener('click', (e) => {
+  if (e.target.tagName === 'TH') {
+    const sortedArr = sortTable(e.target.cellIndex, e.target.dataset.type);
+    tbody.append(...sortedArr);
+  }
+});
+
+const trainWords = () => {
+  const sortedArr = sortTable(6, 'num', true);
+  const trainArr = [];
+  for (let i = 0; i < 8; i++) {
+    if (+sortedArr[i].cells[6].innerText > 0) {
+      trainArr.push(sortedArr[i].cells[0].innerText);
+    }
+  }
+  cardsDesk.hideStatisticsPage();
+  cardsDesk.loadCards(trainArr);
+};
+
+$('.train-words-btn').addEventListener('click', trainWords);
 
 export { cards, $, $All, scoreContainer };

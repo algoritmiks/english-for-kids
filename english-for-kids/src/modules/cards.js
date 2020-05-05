@@ -1,5 +1,5 @@
 const cardsData = {
-  cathegories: {
+  categories: {
     main: ["fly", "ride", "blow", "lemon", "dog", "bird", "dress", "happy"],
     action1: ["cry", "dance", "dive", "draw", "tofish", "fly", "hug", "jump"],
     action2: ["open", "play", "point", "ride", "run", "sing", "skip", "swim"],
@@ -20,6 +20,18 @@ const cardsData = {
     bird: ["animals2", "Animals 2"],
     dress: ["clothes", "Clothes"],
     happy: ["emotions", "Emotions"]
+  },
+
+  catNames: {
+    main: 'Main',
+    action1: 'Action 1',
+    action2: 'Action 2',
+    action3: 'Action 3',
+    fruits: 'Fruits',
+    animals1: 'Animals 1',
+    animals2: 'Animals 2',
+    clothes: 'Clothes',
+    emotions: 'Emotions',
   },
   
   //action 1

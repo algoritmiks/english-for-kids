@@ -22,6 +22,12 @@ module.exports = {
       "prefer-destructuring": 0,
       "consistent-return": 0,
       "import/no-cycle": 0,
-      "object-curly-newline": 0
+      "object-curly-newline": 0,
+      "arrow-body-style": 0,
+      "no-unused-expressions": 0,
+      "no-lonely-if": 0,
+      "no-plusplus": 0,
+      "no-mixed-operators": 0,
+      "max-len": 0,
     }
 };
